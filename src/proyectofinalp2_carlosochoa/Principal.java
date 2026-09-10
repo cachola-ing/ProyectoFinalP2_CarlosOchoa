@@ -4,6 +4,14 @@
  */
 package proyectofinalp2_carlosochoa;
 
+/*
+Diccionario:
+jp --> JPanel
+lbl --> Label
+btn --> Button
+
+*/
+
 /**
  *
  * @author Carlos Antonio
@@ -28,18 +36,91 @@ public class Principal extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        jpPrincipal = new javax.swing.JPanel();
+        jpNavBar = new javax.swing.JPanel();
+        lblNavBar = new javax.swing.JLabel();
+        btnInicio = new javax.swing.JButton();
+        btnEditor = new javax.swing.JButton();
+        btnExplorador = new javax.swing.JButton();
+        btnUsuarios = new javax.swing.JButton();
+        btnConfiguracion = new javax.swing.JButton();
+        btnLogout = new javax.swing.JButton();
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setPreferredSize(new java.awt.Dimension(1190, 450));
+        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jpNavBar.setBackground(new java.awt.Color(51, 51, 51));
+
+        lblNavBar.setText("Navigation Bar");
+
+        btnInicio.setText("Inicio");
+
+        btnEditor.setText("Editor");
+
+        btnExplorador.setText("Explorador");
+
+        btnUsuarios.setText("Usuarios");
+
+        btnConfiguracion.setText("Configuración");
+
+        btnLogout.setBackground(new java.awt.Color(118, 0, 0));
+        btnLogout.setText("Logout");
+
+        javax.swing.GroupLayout jpNavBarLayout = new javax.swing.GroupLayout(jpNavBar);
+        jpNavBar.setLayout(jpNavBarLayout);
+        jpNavBarLayout.setHorizontalGroup(
+            jpNavBarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jpNavBarLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(lblNavBar)
+                .addGap(109, 109, 109)
+                .addComponent(btnInicio)
+                .addGap(39, 39, 39)
+                .addComponent(btnEditor)
+                .addGap(36, 36, 36)
+                .addComponent(btnExplorador)
+                .addGap(36, 36, 36)
+                .addComponent(btnUsuarios)
+                .addGap(30, 30, 30)
+                .addComponent(btnConfiguracion)
+                .addGap(29, 29, 29)
+                .addComponent(btnLogout)
+                .addContainerGap(322, Short.MAX_VALUE))
         );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+        jpNavBarLayout.setVerticalGroup(
+            jpNavBarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jpNavBarLayout.createSequentialGroup()
+                .addGroup(jpNavBarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jpNavBarLayout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(lblNavBar))
+                    .addGroup(jpNavBarLayout.createSequentialGroup()
+                        .addGap(15, 15, 15)
+                        .addGroup(jpNavBarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(btnInicio)
+                            .addComponent(btnEditor)
+                            .addComponent(btnExplorador)
+                            .addComponent(btnUsuarios)
+                            .addComponent(btnConfiguracion)
+                            .addComponent(btnLogout))))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
+
+        javax.swing.GroupLayout jpPrincipalLayout = new javax.swing.GroupLayout(jpPrincipal);
+        jpPrincipal.setLayout(jpPrincipalLayout);
+        jpPrincipalLayout.setHorizontalGroup(
+            jpPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jpNavBar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
+        jpPrincipalLayout.setVerticalGroup(
+            jpPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jpPrincipalLayout.createSequentialGroup()
+                .addComponent(jpNavBar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 402, Short.MAX_VALUE))
+        );
+
+        getContentPane().add(jpPrincipal, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1190, 450));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -70,5 +151,14 @@ public class Principal extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnConfiguracion;
+    private javax.swing.JButton btnEditor;
+    private javax.swing.JButton btnExplorador;
+    private javax.swing.JButton btnInicio;
+    private javax.swing.JButton btnLogout;
+    private javax.swing.JButton btnUsuarios;
+    private javax.swing.JPanel jpNavBar;
+    private javax.swing.JPanel jpPrincipal;
+    private javax.swing.JLabel lblNavBar;
     // End of variables declaration//GEN-END:variables
 }
