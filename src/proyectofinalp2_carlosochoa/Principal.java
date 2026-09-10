@@ -4,20 +4,23 @@
  */
 package proyectofinalp2_carlosochoa;
 
+import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
+import javax.swing.Timer;
+
 /*
 Diccionario:
 jp --> JPanel
 lbl --> Label
 btn --> Button
 
-*/
-
+ */
 /**
  *
  * @author Carlos Antonio
  */
 public class Principal extends javax.swing.JFrame {
-    
+
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(Principal.class.getName());
 
     /**
@@ -25,6 +28,23 @@ public class Principal extends javax.swing.JFrame {
      */
     public Principal() {
         initComponents();
+
+        jpPrincipal.setVisible(true);
+        jpContenido.setVisible(true);
+
+        jpUsuarios.setVisible(false);
+        jpInicio.setVisible(false);
+        jpEditor.setVisible(false);
+        jpConfiguracion.setVisible(false);
+        jpExplorador.setVisible(false);
+
+        Timer timer = new Timer(1000, e -> {
+            LocalTime horaActual = LocalTime.now();
+            DateTimeFormatter formato = DateTimeFormatter.ofPattern("hh:mm:ss a");
+            lblHora.setText(horaActual.format(formato));
+        });
+
+        timer.start();
     }
 
     /**
@@ -45,8 +65,11 @@ public class Principal extends javax.swing.JFrame {
         btnUsuarios = new javax.swing.JButton();
         btnConfiguracion = new javax.swing.JButton();
         btnLogout = new javax.swing.JButton();
+        lblHora = new javax.swing.JLabel();
         jpContenido = new javax.swing.JPanel();
         jpInicio = new javax.swing.JPanel();
+        lblBienvenida = new javax.swing.JLabel();
+        lblInfo = new javax.swing.JLabel();
         jpEditor = new javax.swing.JPanel();
         jpExplorador = new javax.swing.JPanel();
         jpUsuarios = new javax.swing.JPanel();
@@ -61,6 +84,11 @@ public class Principal extends javax.swing.JFrame {
         lblNavBar.setText("Navigation Bar");
 
         btnInicio.setText("Inicio");
+        btnInicio.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnInicioMouseClicked(evt);
+            }
+        });
 
         btnEditor.setText("Editor");
 
@@ -72,6 +100,8 @@ public class Principal extends javax.swing.JFrame {
 
         btnLogout.setBackground(new java.awt.Color(118, 0, 0));
         btnLogout.setText("Logout");
+
+        lblHora.setText("jLabel1");
 
         javax.swing.GroupLayout jpNavBarLayout = new javax.swing.GroupLayout(jpNavBar);
         jpNavBar.setLayout(jpNavBarLayout);
@@ -92,7 +122,9 @@ public class Principal extends javax.swing.JFrame {
                 .addComponent(btnConfiguracion)
                 .addGap(29, 29, 29)
                 .addComponent(btnLogout)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 147, Short.MAX_VALUE)
+                .addComponent(lblHora)
+                .addGap(138, 138, 138))
         );
         jpNavBarLayout.setVerticalGroup(
             jpNavBarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -109,22 +141,41 @@ public class Principal extends javax.swing.JFrame {
                             .addComponent(btnExplorador)
                             .addComponent(btnUsuarios)
                             .addComponent(btnConfiguracion)
-                            .addComponent(btnLogout))))
+                            .addComponent(btnLogout)
+                            .addComponent(lblHora))))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         jpContenido.setBackground(new java.awt.Color(102, 102, 102));
 
+        jpInicio.setBackground(new java.awt.Color(0, 51, 51));
+
+        lblBienvenida.setText("Bienvenido al sistema");
+
+        lblInfo.setText("Running on: ProyectoFinalP2_CarlosOchoa");
+
         javax.swing.GroupLayout jpInicioLayout = new javax.swing.GroupLayout(jpInicio);
         jpInicio.setLayout(jpInicioLayout);
         jpInicioLayout.setHorizontalGroup(
             jpInicioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1190, Short.MAX_VALUE)
+            .addGroup(jpInicioLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jpInicioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(lblBienvenida)
+                    .addComponent(lblInfo))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jpInicioLayout.setVerticalGroup(
             jpInicioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 398, Short.MAX_VALUE)
+            .addGroup(jpInicioLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(lblBienvenida)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 354, Short.MAX_VALUE)
+                .addComponent(lblInfo)
+                .addContainerGap())
         );
+
+        jpEditor.setBackground(new java.awt.Color(51, 0, 51));
 
         javax.swing.GroupLayout jpEditorLayout = new javax.swing.GroupLayout(jpEditor);
         jpEditor.setLayout(jpEditorLayout);
@@ -137,6 +188,8 @@ public class Principal extends javax.swing.JFrame {
             .addGap(0, 392, Short.MAX_VALUE)
         );
 
+        jpExplorador.setBackground(new java.awt.Color(255, 102, 0));
+
         javax.swing.GroupLayout jpExploradorLayout = new javax.swing.GroupLayout(jpExplorador);
         jpExplorador.setLayout(jpExploradorLayout);
         jpExploradorLayout.setHorizontalGroup(
@@ -148,6 +201,8 @@ public class Principal extends javax.swing.JFrame {
             .addGap(0, 392, Short.MAX_VALUE)
         );
 
+        jpUsuarios.setBackground(new java.awt.Color(255, 204, 102));
+
         javax.swing.GroupLayout jpUsuariosLayout = new javax.swing.GroupLayout(jpUsuarios);
         jpUsuarios.setLayout(jpUsuariosLayout);
         jpUsuariosLayout.setHorizontalGroup(
@@ -158,6 +213,8 @@ public class Principal extends javax.swing.JFrame {
             jpUsuariosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 392, Short.MAX_VALUE)
         );
+
+        jpConfiguracion.setBackground(new java.awt.Color(153, 255, 153));
 
         javax.swing.GroupLayout jpConfiguracionLayout = new javax.swing.GroupLayout(jpConfiguracion);
         jpConfiguracion.setLayout(jpConfiguracionLayout);
@@ -243,10 +300,23 @@ public class Principal extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void btnInicioMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnInicioMouseClicked
+        // TODO add your handling code here:
+        jpInicio.setVisible(true);
+
+        jpUsuarios.setVisible(false);
+        jpEditor.setVisible(false);
+        jpConfiguracion.setVisible(false);
+        jpExplorador.setVisible(false);
+
+
+    }//GEN-LAST:event_btnInicioMouseClicked
+
     /**
      * @param args the command line arguments
      */
     public static void main(String args[]) {
+
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
@@ -283,6 +353,9 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JPanel jpNavBar;
     private javax.swing.JPanel jpPrincipal;
     private javax.swing.JPanel jpUsuarios;
+    private javax.swing.JLabel lblBienvenida;
+    private javax.swing.JLabel lblHora;
+    private javax.swing.JLabel lblInfo;
     private javax.swing.JLabel lblNavBar;
     // End of variables declaration//GEN-END:variables
 }
