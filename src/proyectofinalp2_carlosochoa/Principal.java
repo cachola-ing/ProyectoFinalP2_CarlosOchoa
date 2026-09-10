@@ -91,15 +91,40 @@ public class Principal extends javax.swing.JFrame {
         });
 
         btnEditor.setText("Editor");
+        btnEditor.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnEditorMouseClicked(evt);
+            }
+        });
 
         btnExplorador.setText("Explorador");
+        btnExplorador.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnExploradorMouseClicked(evt);
+            }
+        });
 
         btnUsuarios.setText("Usuarios");
+        btnUsuarios.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnUsuariosMouseClicked(evt);
+            }
+        });
 
         btnConfiguracion.setText("Configuración");
+        btnConfiguracion.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnConfiguracionMouseClicked(evt);
+            }
+        });
 
         btnLogout.setBackground(new java.awt.Color(118, 0, 0));
         btnLogout.setText("Logout");
+        btnLogout.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnLogoutMouseClicked(evt);
+            }
+        });
 
         lblHora.setText("jLabel1");
 
@@ -311,6 +336,34 @@ public class Principal extends javax.swing.JFrame {
 
 
     }//GEN-LAST:event_btnInicioMouseClicked
+
+    private void btnEditorMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnEditorMouseClicked
+        // TODO add your handling code here:
+        jpEditor.setVisible(true);
+        
+        jpInicio.setVisible(false);
+        jpUsuarios.setVisible(false);
+        jpConfiguracion.setVisible(false);
+        jpExplorador.setVisible(false);
+        
+        
+    }//GEN-LAST:event_btnEditorMouseClicked
+
+    private void btnExploradorMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnExploradorMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnExploradorMouseClicked
+
+    private void btnUsuariosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnUsuariosMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnUsuariosMouseClicked
+
+    private void btnConfiguracionMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnConfiguracionMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnConfiguracionMouseClicked
+
+    private void btnLogoutMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnLogoutMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnLogoutMouseClicked
 
     /**
      * @param args the command line arguments

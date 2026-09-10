@@ -127,21 +127,33 @@
               <Properties>
                 <Property name="text" type="java.lang.String" value="Editor"/>
               </Properties>
+              <Events>
+                <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="btnEditorMouseClicked"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JButton" name="btnExplorador">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Explorador"/>
               </Properties>
+              <Events>
+                <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="btnExploradorMouseClicked"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JButton" name="btnUsuarios">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Usuarios"/>
               </Properties>
+              <Events>
+                <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="btnUsuariosMouseClicked"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JButton" name="btnConfiguracion">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Configuraci&#xf3;n"/>
               </Properties>
+              <Events>
+                <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="btnConfiguracionMouseClicked"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JButton" name="btnLogout">
               <Properties>
@@ -150,6 +162,9 @@
                 </Property>
                 <Property name="text" type="java.lang.String" value="Logout"/>
               </Properties>
+              <Events>
+                <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="btnLogoutMouseClicked"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JLabel" name="lblHora">
               <Properties>
