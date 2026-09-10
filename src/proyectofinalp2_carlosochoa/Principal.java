@@ -45,6 +45,12 @@ public class Principal extends javax.swing.JFrame {
         btnUsuarios = new javax.swing.JButton();
         btnConfiguracion = new javax.swing.JButton();
         btnLogout = new javax.swing.JButton();
+        jpContenido = new javax.swing.JPanel();
+        jpInicio = new javax.swing.JPanel();
+        jpEditor = new javax.swing.JPanel();
+        jpExplorador = new javax.swing.JPanel();
+        jpUsuarios = new javax.swing.JPanel();
+        jpConfiguracion = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setPreferredSize(new java.awt.Dimension(1190, 450));
@@ -86,7 +92,7 @@ public class Principal extends javax.swing.JFrame {
                 .addComponent(btnConfiguracion)
                 .addGap(29, 29, 29)
                 .addComponent(btnLogout)
-                .addContainerGap(322, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jpNavBarLayout.setVerticalGroup(
             jpNavBarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -107,17 +113,129 @@ public class Principal extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
+        jpContenido.setBackground(new java.awt.Color(102, 102, 102));
+
+        javax.swing.GroupLayout jpInicioLayout = new javax.swing.GroupLayout(jpInicio);
+        jpInicio.setLayout(jpInicioLayout);
+        jpInicioLayout.setHorizontalGroup(
+            jpInicioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 1190, Short.MAX_VALUE)
+        );
+        jpInicioLayout.setVerticalGroup(
+            jpInicioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 398, Short.MAX_VALUE)
+        );
+
+        javax.swing.GroupLayout jpEditorLayout = new javax.swing.GroupLayout(jpEditor);
+        jpEditor.setLayout(jpEditorLayout);
+        jpEditorLayout.setHorizontalGroup(
+            jpEditorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+        );
+        jpEditorLayout.setVerticalGroup(
+            jpEditorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 392, Short.MAX_VALUE)
+        );
+
+        javax.swing.GroupLayout jpExploradorLayout = new javax.swing.GroupLayout(jpExplorador);
+        jpExplorador.setLayout(jpExploradorLayout);
+        jpExploradorLayout.setHorizontalGroup(
+            jpExploradorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+        );
+        jpExploradorLayout.setVerticalGroup(
+            jpExploradorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 392, Short.MAX_VALUE)
+        );
+
+        javax.swing.GroupLayout jpUsuariosLayout = new javax.swing.GroupLayout(jpUsuarios);
+        jpUsuarios.setLayout(jpUsuariosLayout);
+        jpUsuariosLayout.setHorizontalGroup(
+            jpUsuariosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+        );
+        jpUsuariosLayout.setVerticalGroup(
+            jpUsuariosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 392, Short.MAX_VALUE)
+        );
+
+        javax.swing.GroupLayout jpConfiguracionLayout = new javax.swing.GroupLayout(jpConfiguracion);
+        jpConfiguracion.setLayout(jpConfiguracionLayout);
+        jpConfiguracionLayout.setHorizontalGroup(
+            jpConfiguracionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+        );
+        jpConfiguracionLayout.setVerticalGroup(
+            jpConfiguracionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 398, Short.MAX_VALUE)
+        );
+
+        javax.swing.GroupLayout jpContenidoLayout = new javax.swing.GroupLayout(jpContenido);
+        jpContenido.setLayout(jpContenidoLayout);
+        jpContenidoLayout.setHorizontalGroup(
+            jpContenidoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jpInicio, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(jpContenidoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jpContenidoLayout.createSequentialGroup()
+                    .addContainerGap()
+                    .addComponent(jpEditor, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addContainerGap()))
+            .addGroup(jpContenidoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jpContenidoLayout.createSequentialGroup()
+                    .addContainerGap()
+                    .addComponent(jpExplorador, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addContainerGap()))
+            .addGroup(jpContenidoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jpContenidoLayout.createSequentialGroup()
+                    .addContainerGap()
+                    .addComponent(jpUsuarios, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addContainerGap()))
+            .addGroup(jpContenidoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jpContenidoLayout.createSequentialGroup()
+                    .addContainerGap()
+                    .addComponent(jpConfiguracion, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addContainerGap()))
+        );
+        jpContenidoLayout.setVerticalGroup(
+            jpContenidoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jpContenidoLayout.createSequentialGroup()
+                .addComponent(jpInicio, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
+            .addGroup(jpContenidoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jpContenidoLayout.createSequentialGroup()
+                    .addContainerGap()
+                    .addComponent(jpEditor, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addContainerGap()))
+            .addGroup(jpContenidoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jpContenidoLayout.createSequentialGroup()
+                    .addContainerGap()
+                    .addComponent(jpExplorador, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addContainerGap()))
+            .addGroup(jpContenidoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jpContenidoLayout.createSequentialGroup()
+                    .addContainerGap()
+                    .addComponent(jpUsuarios, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addContainerGap()))
+            .addGroup(jpContenidoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jpContenidoLayout.createSequentialGroup()
+                    .addGap(3, 3, 3)
+                    .addComponent(jpConfiguracion, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGap(3, 3, 3)))
+        );
+
         javax.swing.GroupLayout jpPrincipalLayout = new javax.swing.GroupLayout(jpPrincipal);
         jpPrincipal.setLayout(jpPrincipalLayout);
         jpPrincipalLayout.setHorizontalGroup(
             jpPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jpNavBar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jpContenido, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         jpPrincipalLayout.setVerticalGroup(
             jpPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jpPrincipalLayout.createSequentialGroup()
                 .addComponent(jpNavBar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 402, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jpContenido, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
         getContentPane().add(jpPrincipal, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1190, 450));
@@ -157,8 +275,14 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JButton btnInicio;
     private javax.swing.JButton btnLogout;
     private javax.swing.JButton btnUsuarios;
+    private javax.swing.JPanel jpConfiguracion;
+    private javax.swing.JPanel jpContenido;
+    private javax.swing.JPanel jpEditor;
+    private javax.swing.JPanel jpExplorador;
+    private javax.swing.JPanel jpInicio;
     private javax.swing.JPanel jpNavBar;
     private javax.swing.JPanel jpPrincipal;
+    private javax.swing.JPanel jpUsuarios;
     private javax.swing.JLabel lblNavBar;
     // End of variables declaration//GEN-END:variables
 }
