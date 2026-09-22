@@ -37,6 +37,7 @@ public class ProyectoPrincipal extends javax.swing.JFrame {
 
         jpLogin.setVisible(true);
         jpInicio.setVisible(false);
+       jpEditor.setVisible(false);
 
         Timer timer = new Timer(1000, e -> {
             Date fechaActual = new Date();
@@ -81,6 +82,15 @@ public class ProyectoPrincipal extends javax.swing.JFrame {
         btnConfiguracion = new javax.swing.JButton();
         lblHora = new javax.swing.JLabel();
         lblFecha = new javax.swing.JLabel();
+        jpEditor = new javax.swing.JPanel();
+        lblTituloEditor = new javax.swing.JLabel();
+        btnNuevo = new javax.swing.JButton();
+        btnAbrir = new javax.swing.JButton();
+        btnGuardar = new javax.swing.JButton();
+        btnColorEditor = new javax.swing.JButton();
+        btnVolver = new javax.swing.JButton();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        txtAreaEditor = new javax.swing.JTextArea();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -201,7 +211,7 @@ public class ProyectoPrincipal extends javax.swing.JFrame {
         jpNavbarLayout.setVerticalGroup(
             jpNavbarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jpNavbarLayout.createSequentialGroup()
-                .addGap(23, 23, 23)
+                .addGap(27, 27, 27)
                 .addGroup(jpNavbarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblNombreSistema)
                     .addComponent(btnInicio)
@@ -209,13 +219,18 @@ public class ProyectoPrincipal extends javax.swing.JFrame {
                     .addComponent(btnPersonalizar)
                     .addComponent(lblUsuarioActual)
                     .addComponent(btnCerrarSesion))
-                .addContainerGap(25, Short.MAX_VALUE))
+                .addContainerGap(21, Short.MAX_VALUE))
         );
 
         jpEscritorio.setBackground(new java.awt.Color(51, 51, 51));
         jpEscritorio.setPreferredSize(new java.awt.Dimension(1000, 575));
 
         btnEditor.setText("Editor de texto");
+        btnEditor.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnEditorMouseClicked(evt);
+            }
+        });
 
         btnExplorador.setText("Explorador de Archivos");
 
@@ -252,7 +267,7 @@ public class ProyectoPrincipal extends javax.swing.JFrame {
                 .addComponent(btnExplorador, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(46, 46, 46)
                 .addComponent(btnConfiguracion, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 114, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 187, Short.MAX_VALUE)
                 .addComponent(lblHora)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(lblFecha)
@@ -267,15 +282,76 @@ public class ProyectoPrincipal extends javax.swing.JFrame {
                 .addGroup(jpInicioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jpNavbar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jpEscritorio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(0, 0, Short.MAX_VALUE))
+                .addGap(0, 12, Short.MAX_VALUE))
         );
         jpInicioLayout.setVerticalGroup(
             jpInicioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jpInicioLayout.createSequentialGroup()
                 .addComponent(jpNavbar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jpEscritorio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jpEscritorio, javax.swing.GroupLayout.PREFERRED_SIZE, 648, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, Short.MAX_VALUE))
+        );
+
+        jpEditor.setPreferredSize(new java.awt.Dimension(1000, 650));
+
+        lblTituloEditor.setText("Editor de Texto");
+
+        btnNuevo.setText("Nuevo");
+
+        btnAbrir.setText("Abrir");
+
+        btnGuardar.setText("Guardar");
+
+        btnColorEditor.setText("Cambiar Color");
+
+        btnVolver.setText("Volver");
+
+        txtAreaEditor.setColumns(20);
+        txtAreaEditor.setRows(5);
+        jScrollPane1.setViewportView(txtAreaEditor);
+
+        javax.swing.GroupLayout jpEditorLayout = new javax.swing.GroupLayout(jpEditor);
+        jpEditor.setLayout(jpEditorLayout);
+        jpEditorLayout.setHorizontalGroup(
+            jpEditorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jpEditorLayout.createSequentialGroup()
+                .addGap(64, 64, 64)
+                .addComponent(btnNuevo)
+                .addGap(68, 68, 68)
+                .addComponent(btnAbrir)
+                .addGap(61, 61, 61)
+                .addComponent(btnGuardar)
+                .addGap(56, 56, 56)
+                .addGroup(jpEditorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jpEditorLayout.createSequentialGroup()
+                        .addComponent(lblTituloEditor)
+                        .addContainerGap(449, Short.MAX_VALUE))
+                    .addGroup(jpEditorLayout.createSequentialGroup()
+                        .addComponent(btnColorEditor)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(btnVolver)
+                        .addGap(58, 58, 58))))
+            .addGroup(jpEditorLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane1)
+                .addContainerGap())
+        );
+        jpEditorLayout.setVerticalGroup(
+            jpEditorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jpEditorLayout.createSequentialGroup()
+                .addGap(16, 16, 16)
+                .addComponent(lblTituloEditor)
+                .addGap(61, 61, 61)
+                .addGroup(jpEditorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnNuevo)
+                    .addComponent(btnAbrir)
+                    .addComponent(btnGuardar)
+                    .addComponent(btnColorEditor)
+                    .addComponent(btnVolver))
+                .addGap(18, 18, 18)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 364, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(154, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout jpContenedorLayout = new javax.swing.GroupLayout(jpContenedor);
@@ -284,23 +360,27 @@ public class ProyectoPrincipal extends javax.swing.JFrame {
             jpContenedorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jpContenedorLayout.createSequentialGroup()
                 .addComponent(jpLogin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+                .addGap(0, 12, Short.MAX_VALUE))
+            .addGroup(jpContenedorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addComponent(jpInicio, javax.swing.GroupLayout.DEFAULT_SIZE, 1012, Short.MAX_VALUE))
             .addGroup(jpContenedorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(jpContenedorLayout.createSequentialGroup()
-                    .addContainerGap()
-                    .addComponent(jpInicio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                    .addComponent(jpEditor, javax.swing.GroupLayout.DEFAULT_SIZE, 1006, Short.MAX_VALUE)
+                    .addContainerGap()))
         );
         jpContenedorLayout.setVerticalGroup(
             jpContenedorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jpContenedorLayout.createSequentialGroup()
                 .addComponent(jpLogin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+                .addGap(0, 12, Short.MAX_VALUE))
             .addGroup(jpContenedorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(jpContenedorLayout.createSequentialGroup()
-                    .addContainerGap()
-                    .addComponent(jpInicio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                    .addComponent(jpInicio, javax.swing.GroupLayout.PREFERRED_SIZE, 656, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(0, 6, Short.MAX_VALUE)))
+            .addGroup(jpContenedorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jpContenedorLayout.createSequentialGroup()
+                    .addComponent(jpEditor, javax.swing.GroupLayout.PREFERRED_SIZE, 656, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(0, 6, Short.MAX_VALUE)))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -407,6 +487,14 @@ public class ProyectoPrincipal extends javax.swing.JFrame {
 
     }//GEN-LAST:event_btnCerrarSesionMouseClicked
 
+    private void btnEditorMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnEditorMouseClicked
+        // TODO add your handling code here:
+        jpInicio.setVisible(false);
+        jpEditor.setVisible(true);
+        
+        
+    }//GEN-LAST:event_btnEditorMouseClicked
+
     /**
      * @param args the command line arguments
      */
@@ -433,15 +521,22 @@ public class ProyectoPrincipal extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnAbrir;
     private javax.swing.JButton btnCerrarSesion;
+    private javax.swing.JButton btnColorEditor;
     private javax.swing.JButton btnConfiguracion;
     private javax.swing.JButton btnEditor;
     private javax.swing.JButton btnExplorador;
+    private javax.swing.JButton btnGuardar;
     private javax.swing.JButton btnIngresar;
     private javax.swing.JButton btnInicio;
+    private javax.swing.JButton btnNuevo;
     private javax.swing.JButton btnPersonalizar;
     private javax.swing.JButton btnUsuarios;
+    private javax.swing.JButton btnVolver;
+    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JPanel jpContenedor;
+    private javax.swing.JPanel jpEditor;
     private javax.swing.JPanel jpEscritorio;
     private javax.swing.JPanel jpInicio;
     private javax.swing.JPanel jpLogin;
@@ -452,9 +547,11 @@ public class ProyectoPrincipal extends javax.swing.JFrame {
     private javax.swing.JLabel lblHora;
     private javax.swing.JLabel lblNombreSistema;
     private javax.swing.JLabel lblTitulo;
+    private javax.swing.JLabel lblTituloEditor;
     private javax.swing.JLabel lblUsuario;
     private javax.swing.JLabel lblUsuarioActual;
     private javax.swing.JProgressBar pbLogin;
+    private javax.swing.JTextArea txtAreaEditor;
     private javax.swing.JPasswordField txtContrasena;
     private javax.swing.JTextField txtUsuario;
     // End of variables declaration//GEN-END:variables
