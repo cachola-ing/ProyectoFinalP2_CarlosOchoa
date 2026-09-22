@@ -31,6 +31,9 @@ public class ProyectoPrincipal extends javax.swing.JFrame {
         
         pbLogin.setValue(0);
         pbLogin.setStringPainted(true);
+        
+        jpLogin.setVisible(true);
+        jpInicio.setVisible(false);
     }
 
     /**
@@ -52,6 +55,20 @@ public class ProyectoPrincipal extends javax.swing.JFrame {
         btnIngresar = new javax.swing.JButton();
         pbLogin = new javax.swing.JProgressBar();
         lblEstado = new javax.swing.JLabel();
+        jpInicio = new javax.swing.JPanel();
+        jpNavbar = new javax.swing.JPanel();
+        lblNombreSistema = new javax.swing.JLabel();
+        btnInicio = new javax.swing.JButton();
+        btnUsuarios = new javax.swing.JButton();
+        btnPersonalizar = new javax.swing.JButton();
+        lblUsuarioActual = new javax.swing.JLabel();
+        btnCerrarSesion = new javax.swing.JButton();
+        jpEscritorio = new javax.swing.JPanel();
+        btnEditor = new javax.swing.JButton();
+        btnExplorador = new javax.swing.JButton();
+        btnConfiguracion = new javax.swing.JButton();
+        lblHora = new javax.swing.JLabel();
+        lblFecha = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -79,40 +96,38 @@ public class ProyectoPrincipal extends javax.swing.JFrame {
         jpLogin.setLayout(jpLoginLayout);
         jpLoginLayout.setHorizontalGroup(
             jpLoginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jpLoginLayout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
+            .addGroup(jpLoginLayout.createSequentialGroup()
+                .addGap(0, 340, Short.MAX_VALUE)
                 .addGroup(jpLoginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jpLoginLayout.createSequentialGroup()
                         .addComponent(lblTitulo)
                         .addGap(457, 457, 457))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jpLoginLayout.createSequentialGroup()
-                        .addComponent(btnIngresar)
-                        .addGap(448, 448, 448))))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jpLoginLayout.createSequentialGroup()
-                .addContainerGap(340, Short.MAX_VALUE)
-                .addGroup(jpLoginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jpLoginLayout.createSequentialGroup()
-                        .addComponent(lblUsuario)
-                        .addGap(471, 471, 471))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jpLoginLayout.createSequentialGroup()
-                        .addGroup(jpLoginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(txtContrasena, javax.swing.GroupLayout.PREFERRED_SIZE, 345, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 345, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(pbLogin, javax.swing.GroupLayout.PREFERRED_SIZE, 345, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(315, 315, 315))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jpLoginLayout.createSequentialGroup()
-                        .addComponent(lblContrasena)
-                        .addGap(459, 459, 459))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jpLoginLayout.createSequentialGroup()
-                        .addComponent(lblEstado)
-                        .addGap(420, 420, 420))))
+                        .addGroup(jpLoginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jpLoginLayout.createSequentialGroup()
+                                .addGap(135, 135, 135)
+                                .addComponent(btnIngresar)
+                                .addGap(133, 133, 133))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jpLoginLayout.createSequentialGroup()
+                                .addComponent(lblUsuario)
+                                .addGap(156, 156, 156))
+                            .addComponent(txtContrasena, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 345, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtUsuario, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 345, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(pbLogin, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 345, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jpLoginLayout.createSequentialGroup()
+                                .addComponent(lblContrasena)
+                                .addGap(144, 144, 144))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jpLoginLayout.createSequentialGroup()
+                                .addComponent(lblEstado)
+                                .addGap(105, 105, 105)))
+                        .addGap(315, 315, 315))))
         );
         jpLoginLayout.setVerticalGroup(
             jpLoginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jpLoginLayout.createSequentialGroup()
                 .addGap(24, 24, 24)
                 .addComponent(lblTitulo)
-                .addGap(76, 76, 76)
+                .addGap(44, 44, 44)
                 .addComponent(lblUsuario)
                 .addGap(18, 18, 18)
                 .addComponent(txtUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -126,7 +141,124 @@ public class ProyectoPrincipal extends javax.swing.JFrame {
                 .addComponent(pbLogin, javax.swing.GroupLayout.PREFERRED_SIZE, 15, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(lblEstado)
-                .addContainerGap(261, Short.MAX_VALUE))
+                .addContainerGap(588, Short.MAX_VALUE))
+        );
+
+        jpInicio.setPreferredSize(new java.awt.Dimension(1000, 650));
+
+        jpNavbar.setBackground(new java.awt.Color(51, 51, 51));
+        jpNavbar.setPreferredSize(new java.awt.Dimension(1000, 75));
+
+        lblNombreSistema.setText("CacholaOS");
+
+        btnInicio.setText("Inicio");
+
+        btnUsuarios.setText("Usuarios");
+
+        btnPersonalizar.setText("Personalizar");
+
+        lblUsuarioActual.setText("Usuario");
+
+        btnCerrarSesion.setBackground(new java.awt.Color(255, 51, 51));
+        btnCerrarSesion.setText("Cerrar Sesión");
+
+        javax.swing.GroupLayout jpNavbarLayout = new javax.swing.GroupLayout(jpNavbar);
+        jpNavbar.setLayout(jpNavbarLayout);
+        jpNavbarLayout.setHorizontalGroup(
+            jpNavbarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jpNavbarLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(lblNombreSistema)
+                .addGap(113, 113, 113)
+                .addComponent(btnInicio)
+                .addGap(80, 80, 80)
+                .addComponent(btnUsuarios)
+                .addGap(84, 84, 84)
+                .addComponent(btnPersonalizar)
+                .addGap(64, 64, 64)
+                .addComponent(lblUsuarioActual)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 156, Short.MAX_VALUE)
+                .addComponent(btnCerrarSesion)
+                .addGap(45, 45, 45))
+        );
+        jpNavbarLayout.setVerticalGroup(
+            jpNavbarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jpNavbarLayout.createSequentialGroup()
+                .addGap(23, 23, 23)
+                .addGroup(jpNavbarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblNombreSistema)
+                    .addComponent(btnInicio)
+                    .addComponent(btnUsuarios)
+                    .addComponent(btnPersonalizar)
+                    .addComponent(lblUsuarioActual)
+                    .addComponent(btnCerrarSesion))
+                .addContainerGap(25, Short.MAX_VALUE))
+        );
+
+        jpEscritorio.setBackground(new java.awt.Color(51, 51, 51));
+        jpEscritorio.setPreferredSize(new java.awt.Dimension(1000, 575));
+
+        btnEditor.setText("Editor de texto");
+
+        btnExplorador.setText("Explorador de Archivos");
+
+        btnConfiguracion.setText("Configuración");
+
+        lblHora.setText("Hora");
+
+        lblFecha.setText("Fecha");
+
+        javax.swing.GroupLayout jpEscritorioLayout = new javax.swing.GroupLayout(jpEscritorio);
+        jpEscritorio.setLayout(jpEscritorioLayout);
+        jpEscritorioLayout.setHorizontalGroup(
+            jpEscritorioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jpEscritorioLayout.createSequentialGroup()
+                .addGap(54, 54, 54)
+                .addGroup(jpEscritorioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(btnExplorador, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnEditor, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnConfiguracion, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(789, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jpEscritorioLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(jpEscritorioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(lblFecha)
+                    .addComponent(lblHora))
+                .addGap(71, 71, 71))
+        );
+        jpEscritorioLayout.setVerticalGroup(
+            jpEscritorioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jpEscritorioLayout.createSequentialGroup()
+                .addGap(46, 46, 46)
+                .addComponent(btnEditor, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(46, 46, 46)
+                .addComponent(btnExplorador, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(46, 46, 46)
+                .addComponent(btnConfiguracion, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 167, Short.MAX_VALUE)
+                .addComponent(lblHora)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(lblFecha)
+                .addGap(46, 46, 46))
+        );
+
+        javax.swing.GroupLayout jpInicioLayout = new javax.swing.GroupLayout(jpInicio);
+        jpInicio.setLayout(jpInicioLayout);
+        jpInicioLayout.setHorizontalGroup(
+            jpInicioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jpInicioLayout.createSequentialGroup()
+                .addGroup(jpInicioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jpNavbar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jpEscritorio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(0, 0, Short.MAX_VALUE))
+        );
+        jpInicioLayout.setVerticalGroup(
+            jpInicioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jpInicioLayout.createSequentialGroup()
+                .addComponent(jpNavbar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jpEscritorio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout jpContenedorLayout = new javax.swing.GroupLayout(jpContenedor);
@@ -136,12 +268,22 @@ public class ProyectoPrincipal extends javax.swing.JFrame {
             .addGroup(jpContenedorLayout.createSequentialGroup()
                 .addComponent(jpLogin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, Short.MAX_VALUE))
+            .addGroup(jpContenedorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jpContenedorLayout.createSequentialGroup()
+                    .addContainerGap()
+                    .addComponent(jpInicio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
         );
         jpContenedorLayout.setVerticalGroup(
             jpContenedorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jpContenedorLayout.createSequentialGroup()
                 .addComponent(jpLogin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, Short.MAX_VALUE))
+            .addGroup(jpContenedorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jpContenedorLayout.createSequentialGroup()
+                    .addContainerGap()
+                    .addComponent(jpInicio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -192,6 +334,11 @@ public class ProyectoPrincipal extends javax.swing.JFrame {
         lblEstado.setText("Bienvenido " + encontrado.getNombre());
         
         JOptionPane.showMessageDialog(this, "Bienvenido al sistema " + encontrado.getNombre());
+        
+        lblUsuarioActual.setText(encontrado.getNombre());
+        
+        jpLogin.setVisible(false);
+        jpInicio.setVisible(true);
     }//GEN-LAST:event_btnIngresarMouseClicked
 
     /**
@@ -220,13 +367,27 @@ public class ProyectoPrincipal extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnCerrarSesion;
+    private javax.swing.JButton btnConfiguracion;
+    private javax.swing.JButton btnEditor;
+    private javax.swing.JButton btnExplorador;
     private javax.swing.JButton btnIngresar;
+    private javax.swing.JButton btnInicio;
+    private javax.swing.JButton btnPersonalizar;
+    private javax.swing.JButton btnUsuarios;
     private javax.swing.JPanel jpContenedor;
+    private javax.swing.JPanel jpEscritorio;
+    private javax.swing.JPanel jpInicio;
     private javax.swing.JPanel jpLogin;
+    private javax.swing.JPanel jpNavbar;
     private javax.swing.JLabel lblContrasena;
     private javax.swing.JLabel lblEstado;
+    private javax.swing.JLabel lblFecha;
+    private javax.swing.JLabel lblHora;
+    private javax.swing.JLabel lblNombreSistema;
     private javax.swing.JLabel lblTitulo;
     private javax.swing.JLabel lblUsuario;
+    private javax.swing.JLabel lblUsuarioActual;
     private javax.swing.JProgressBar pbLogin;
     private javax.swing.JPasswordField txtContrasena;
     private javax.swing.JTextField txtUsuario;
