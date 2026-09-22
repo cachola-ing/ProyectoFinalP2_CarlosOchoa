@@ -4,11 +4,13 @@
  */
 package proyectofinalp2_carlosochoa;
 
+import java.io.Serializable;
+
 /**
  *
  * @author Carlos Antonio
  */
-public class Usuario {
+public class Usuario implements Serializable{
     String nombre;
     String contrasena;
     String tipo;
