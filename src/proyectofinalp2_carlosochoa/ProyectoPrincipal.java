@@ -4,6 +4,8 @@
  */
 package proyectofinalp2_carlosochoa;
 
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author Carlos Antonio
@@ -11,6 +13,9 @@ package proyectofinalp2_carlosochoa;
 public class ProyectoPrincipal extends javax.swing.JFrame {
     
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(ProyectoPrincipal.class.getName());
+    
+    Usuario[] usuarios = new Usuario[20];
+    int cantidadUsuarios = 0;
 
     /**
      * Creates new form ProyectoPrincipal
@@ -20,6 +25,12 @@ public class ProyectoPrincipal extends javax.swing.JFrame {
         setSize(1000, 650);
         setLocationRelativeTo(null);
         setResizable(false);
+        
+        usuarios[0] = new Usuario("admin", "1234","Administrador");
+        cantidadUsuarios = 1;
+        
+        pbLogin.setValue(0);
+        pbLogin.setStringPainted(true);
     }
 
     /**
@@ -56,6 +67,11 @@ public class ProyectoPrincipal extends javax.swing.JFrame {
         lblContrasena.setText("Contrasena");
 
         btnIngresar.setText("Ingresar");
+        btnIngresar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnIngresarMouseClicked(evt);
+            }
+        });
 
         lblEstado.setText("Ingrese sus credenciales");
 
@@ -145,6 +161,38 @@ public class ProyectoPrincipal extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btnIngresarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnIngresarMouseClicked
+        // TODO add your handling code here:
+        String nombre = txtUsuario.getText().trim();
+        String contrasena = new String(txtContrasena.getPassword());
+        
+        if(nombre.isEmpty() || contrasena.isEmpty()){
+            JOptionPane.showMessageDialog(this, "Ingrese usuario y contrasena");
+            return;
+        }//fin del if
+        
+        Usuario encontrado = null;
+        
+        for (int i = 0; i < cantidadUsuarios; i++) {
+            if(usuarios[i].getNombre().equals(nombre) && usuarios[i].getContrasena().equals(contrasena)){
+                encontrado = usuarios[i];
+                break;
+            }//fin del if
+        }//fin del for
+        
+        if(encontrado == null){
+            JOptionPane.showMessageDialog(this, "Usuario o contrasena incorrecta");
+            
+            txtContrasena.setText("");
+            return;
+        }//fin del if
+        
+        pbLogin.setValue(100);
+        lblEstado.setText("Bienvenido " + encontrado.getNombre());
+        
+        JOptionPane.showMessageDialog(this, "Bienvenido al sistema " + encontrado.getNombre());
+    }//GEN-LAST:event_btnIngresarMouseClicked
 
     /**
      * @param args the command line arguments
