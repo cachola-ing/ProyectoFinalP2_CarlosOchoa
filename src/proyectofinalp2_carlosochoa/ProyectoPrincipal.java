@@ -5,6 +5,10 @@
 package proyectofinalp2_carlosochoa;
 
 import javax.swing.JOptionPane;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import javax.swing.Timer;
+
 
 /**
  *
@@ -34,6 +38,15 @@ public class ProyectoPrincipal extends javax.swing.JFrame {
         
         jpLogin.setVisible(true);
         jpInicio.setVisible(false);
+        
+        Timer timer = new Timer(1000, e -> {
+            Date fechaActual = new Date();
+            
+            lblHora.setText(new SimpleDateFormat("hh:mm:ss a").format(fechaActual));
+            lblFecha.setText(new SimpleDateFormat("dd/MM/yyyy").format(fechaActual));
+        });
+        
+        timer.start();
     }
 
     /**
@@ -141,7 +154,7 @@ public class ProyectoPrincipal extends javax.swing.JFrame {
                 .addComponent(pbLogin, javax.swing.GroupLayout.PREFERRED_SIZE, 15, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(lblEstado)
-                .addContainerGap(588, Short.MAX_VALUE))
+                .addContainerGap(293, Short.MAX_VALUE))
         );
 
         jpInicio.setPreferredSize(new java.awt.Dimension(1000, 650));
@@ -224,7 +237,7 @@ public class ProyectoPrincipal extends javax.swing.JFrame {
                 .addGroup(jpEscritorioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(lblFecha)
                     .addComponent(lblHora))
-                .addGap(71, 71, 71))
+                .addGap(96, 96, 96))
         );
         jpEscritorioLayout.setVerticalGroup(
             jpEscritorioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -235,11 +248,11 @@ public class ProyectoPrincipal extends javax.swing.JFrame {
                 .addComponent(btnExplorador, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(46, 46, 46)
                 .addComponent(btnConfiguracion, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 167, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 114, Short.MAX_VALUE)
                 .addComponent(lblHora)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(lblFecha)
-                .addGap(46, 46, 46))
+                .addGap(99, 99, 99))
         );
 
         javax.swing.GroupLayout jpInicioLayout = new javax.swing.GroupLayout(jpInicio);
