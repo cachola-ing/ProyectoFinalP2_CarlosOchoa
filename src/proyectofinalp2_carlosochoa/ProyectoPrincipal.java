@@ -9,15 +9,14 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import javax.swing.Timer;
 
-
 /**
  *
  * @author Carlos Antonio
  */
 public class ProyectoPrincipal extends javax.swing.JFrame {
-    
+
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(ProyectoPrincipal.class.getName());
-    
+
     Usuario[] usuarios = new Usuario[20];
     int cantidadUsuarios = 0;
 
@@ -29,23 +28,23 @@ public class ProyectoPrincipal extends javax.swing.JFrame {
         setSize(1000, 650);
         setLocationRelativeTo(null);
         setResizable(false);
-        
-        usuarios[0] = new Usuario("admin", "1234","Administrador");
+
+        usuarios[0] = new Usuario("admin", "1234", "Administrador");
         cantidadUsuarios = 1;
-        
+
         pbLogin.setValue(0);
         pbLogin.setStringPainted(true);
-        
+
         jpLogin.setVisible(true);
         jpInicio.setVisible(false);
-        
+
         Timer timer = new Timer(1000, e -> {
             Date fechaActual = new Date();
-            
+
             lblHora.setText(new SimpleDateFormat("hh:mm:ss a").format(fechaActual));
             lblFecha.setText(new SimpleDateFormat("dd/MM/yyyy").format(fechaActual));
         });
-        
+
         timer.start();
     }
 
@@ -321,37 +320,54 @@ public class ProyectoPrincipal extends javax.swing.JFrame {
         // TODO add your handling code here:
         String nombre = txtUsuario.getText().trim();
         String contrasena = new String(txtContrasena.getPassword());
-        
-        if(nombre.isEmpty() || contrasena.isEmpty()){
+
+        if (nombre.isEmpty() || contrasena.isEmpty()) {
             JOptionPane.showMessageDialog(this, "Ingrese usuario y contrasena");
             return;
         }//fin del if
-        
+
         Usuario encontrado = null;
-        
+
         for (int i = 0; i < cantidadUsuarios; i++) {
-            if(usuarios[i].getNombre().equals(nombre) && usuarios[i].getContrasena().equals(contrasena)){
+            if (usuarios[i].getNombre().equals(nombre) && usuarios[i].getContrasena().equals(contrasena)) {
                 encontrado = usuarios[i];
                 break;
             }//fin del if
         }//fin del for
-        
-        if(encontrado == null){
+
+        if (encontrado == null) {
             JOptionPane.showMessageDialog(this, "Usuario o contrasena incorrecta");
-            
+
             txtContrasena.setText("");
             return;
         }//fin del if
-        
-        pbLogin.setValue(100);
-        lblEstado.setText("Bienvenido " + encontrado.getNombre());
-        
-        JOptionPane.showMessageDialog(this, "Bienvenido al sistema " + encontrado.getNombre());
-        
-        lblUsuarioActual.setText(encontrado.getNombre());
-        
-        jpLogin.setVisible(false);
-        jpInicio.setVisible(true);
+        Usuario usuarioIngresado = encontrado;
+
+        pbLogin.setValue(0);
+        lblEstado.setText("Iniciando sesión...");
+
+        Timer carga = new Timer(50, null);
+
+        carga.addActionListener(e -> {
+            int valor = pbLogin.getValue();
+
+            if (valor < 100) {
+                pbLogin.setValue(valor + 5);
+            } else {
+                carga.stop();
+
+                lblEstado.setText("Bienvenido " + usuarioIngresado.getNombre());
+                lblUsuarioActual.setText(usuarioIngresado.getNombre());
+
+                JOptionPane.showMessageDialog(this,
+                        "Bienvenido al sistema " + usuarioIngresado.getNombre());
+
+                jpLogin.setVisible(false);
+                jpInicio.setVisible(true);
+            }
+        });
+
+        carga.start();
     }//GEN-LAST:event_btnIngresarMouseClicked
 
     /**
