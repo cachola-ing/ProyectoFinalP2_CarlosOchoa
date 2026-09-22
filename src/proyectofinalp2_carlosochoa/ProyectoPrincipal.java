@@ -173,6 +173,11 @@ public class ProyectoPrincipal extends javax.swing.JFrame {
 
         btnCerrarSesion.setBackground(new java.awt.Color(255, 51, 51));
         btnCerrarSesion.setText("Cerrar Sesión");
+        btnCerrarSesion.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnCerrarSesionMouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout jpNavbarLayout = new javax.swing.GroupLayout(jpNavbar);
         jpNavbar.setLayout(jpNavbarLayout);
@@ -369,6 +374,38 @@ public class ProyectoPrincipal extends javax.swing.JFrame {
 
         carga.start();
     }//GEN-LAST:event_btnIngresarMouseClicked
+
+    private void btnCerrarSesionMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCerrarSesionMouseClicked
+        // TODO add your handling code here:
+        pbLogin.setValue(0);
+        lblEstado.setText("Cerrando sesión...");
+
+        jpInicio.setVisible(false);
+        jpLogin.setVisible(true);
+
+        Timer carga = new Timer(50, null);
+
+        carga.addActionListener(e -> {
+            int valor = pbLogin.getValue();
+
+            if (valor < 100) {
+                pbLogin.setValue(valor + 5);
+            } else {
+                carga.stop();
+
+                txtUsuario.setText("");
+                txtContrasena.setText("");
+                lblEstado.setText("Sesión cerrada");
+
+                JOptionPane.showMessageDialog(this, "Sesión cerrada correctamente");
+
+                pbLogin.setValue(0);
+            }
+        });
+
+        carga.start();
+
+    }//GEN-LAST:event_btnCerrarSesionMouseClicked
 
     /**
      * @param args the command line arguments
