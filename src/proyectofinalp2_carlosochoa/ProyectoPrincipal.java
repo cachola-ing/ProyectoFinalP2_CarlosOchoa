@@ -51,6 +51,7 @@ public class ProyectoPrincipal extends javax.swing.JFrame {
         jpLogin.setVisible(true);
         jpInicio.setVisible(false);
         jpEditor.setVisible(false);
+        jpExplorador.setVisible(false);
 
         Timer timer = new Timer(1000, e -> {
             Date fechaActual = new Date();
@@ -109,8 +110,18 @@ public class ProyectoPrincipal extends javax.swing.JFrame {
         jcbFuenteEditor = new javax.swing.JComboBox<>();
         lblTamanoEditor = new javax.swing.JLabel();
         jcbTamanoEditor = new javax.swing.JComboBox<>();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        btnBold = new javax.swing.JButton();
+        btnItalics = new javax.swing.JButton();
+        jpExplorador = new javax.swing.JPanel();
+        lblExploradorTitulo = new javax.swing.JLabel();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        treeArchivos = new javax.swing.JTree();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        tblArchivos = new javax.swing.JTable();
+        btnCrearArchivo = new javax.swing.JButton();
+        btnCrearCarpeta = new javax.swing.JButton();
+        btnEliminarArchivo = new javax.swing.JButton();
+        btnVolverExplorador = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -253,6 +264,11 @@ public class ProyectoPrincipal extends javax.swing.JFrame {
         });
 
         btnExplorador.setText("Explorador de Archivos");
+        btnExplorador.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnExploradorMouseClicked(evt);
+            }
+        });
 
         btnConfiguracion.setText("Configuración");
 
@@ -302,7 +318,7 @@ public class ProyectoPrincipal extends javax.swing.JFrame {
                 .addGroup(jpInicioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jpNavbar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jpEscritorio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(0, 12, Short.MAX_VALUE))
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         jpInicioLayout.setVerticalGroup(
             jpInicioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -373,17 +389,17 @@ public class ProyectoPrincipal extends javax.swing.JFrame {
         jcbTamanoEditor.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "12", "14", "16", "18", "20", "24", "28", "32" }));
         jcbTamanoEditor.addActionListener(this::jcbTamanoEditorActionPerformed);
 
-        jButton1.setText("B");
-        jButton1.addMouseListener(new java.awt.event.MouseAdapter() {
+        btnBold.setText("B");
+        btnBold.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jButton1MouseClicked(evt);
+                btnBoldMouseClicked(evt);
             }
         });
 
-        jButton2.setText("I");
-        jButton2.addMouseListener(new java.awt.event.MouseAdapter() {
+        btnItalics.setText("I");
+        btnItalics.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jButton2MouseClicked(evt);
+                btnItalicsMouseClicked(evt);
             }
         });
 
@@ -394,7 +410,7 @@ public class ProyectoPrincipal extends javax.swing.JFrame {
             .addGroup(jpEditorLayout.createSequentialGroup()
                 .addGap(477, 477, 477)
                 .addComponent(lblTituloEditor)
-                .addContainerGap(449, Short.MAX_VALUE))
+                .addContainerGap(437, Short.MAX_VALUE))
             .addGroup(jpEditorLayout.createSequentialGroup()
                 .addGroup(jpEditorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jpEditorLayout.createSequentialGroup()
@@ -426,9 +442,9 @@ public class ProyectoPrincipal extends javax.swing.JFrame {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(btnVolver))
                             .addGroup(jpEditorLayout.createSequentialGroup()
-                                .addComponent(jButton1)
+                                .addComponent(btnBold)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jButton2)
+                                .addComponent(btnItalics)
                                 .addGap(0, 0, Short.MAX_VALUE)))))
                 .addContainerGap())
         );
@@ -451,11 +467,90 @@ public class ProyectoPrincipal extends javax.swing.JFrame {
                     .addComponent(jcbFuenteEditor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lblTamanoEditor)
                     .addComponent(jcbTamanoEditor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton1)
-                    .addComponent(jButton2))
+                    .addComponent(btnBold)
+                    .addComponent(btnItalics))
                 .addGap(21, 21, 21)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 364, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(149, Short.MAX_VALUE))
+        );
+
+        jpExplorador.setPreferredSize(new java.awt.Dimension(1000, 650));
+
+        lblExploradorTitulo.setText("Explorador de Archivos");
+
+        jScrollPane2.setViewportView(treeArchivos);
+
+        tblArchivos.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Nombre", "Tipo", "Tamaño", "Ruta"
+            }
+        ));
+        jScrollPane3.setViewportView(tblArchivos);
+
+        btnCrearArchivo.setText("Crear Archivo");
+
+        btnCrearCarpeta.setText("Crear Carpeta");
+
+        btnEliminarArchivo.setBackground(new java.awt.Color(255, 0, 0));
+        btnEliminarArchivo.setText("Eliminar");
+
+        btnVolverExplorador.setBackground(new java.awt.Color(255, 0, 0));
+        btnVolverExplorador.setText("Volver");
+        btnVolverExplorador.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnVolverExploradorMouseClicked(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jpExploradorLayout = new javax.swing.GroupLayout(jpExplorador);
+        jpExplorador.setLayout(jpExploradorLayout);
+        jpExploradorLayout.setHorizontalGroup(
+            jpExploradorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jpExploradorLayout.createSequentialGroup()
+                .addGroup(jpExploradorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jpExploradorLayout.createSequentialGroup()
+                        .addGap(436, 436, 436)
+                        .addComponent(lblExploradorTitulo))
+                    .addGroup(jpExploradorLayout.createSequentialGroup()
+                        .addGap(39, 39, 39)
+                        .addGroup(jpExploradorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(btnVolverExplorador)
+                            .addGroup(jpExploradorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addGroup(jpExploradorLayout.createSequentialGroup()
+                                    .addComponent(btnCrearArchivo)
+                                    .addGap(18, 18, 18)
+                                    .addComponent(btnCrearCarpeta)
+                                    .addGap(18, 18, 18)
+                                    .addComponent(btnEliminarArchivo))
+                                .addGroup(jpExploradorLayout.createSequentialGroup()
+                                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGap(68, 68, 68)
+                                    .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 654, javax.swing.GroupLayout.PREFERRED_SIZE))))))
+                .addContainerGap(39, Short.MAX_VALUE))
+        );
+        jpExploradorLayout.setVerticalGroup(
+            jpExploradorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jpExploradorLayout.createSequentialGroup()
+                .addGap(22, 22, 22)
+                .addComponent(lblExploradorTitulo)
+                .addGap(12, 12, 12)
+                .addComponent(btnVolverExplorador)
+                .addGap(18, 18, 18)
+                .addGroup(jpExploradorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jScrollPane2)
+                    .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
+                .addGap(68, 68, 68)
+                .addGroup(jpExploradorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnCrearArchivo)
+                    .addComponent(btnCrearCarpeta)
+                    .addComponent(btnEliminarArchivo))
+                .addContainerGap(94, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout jpContenedorLayout = new javax.swing.GroupLayout(jpContenedor);
@@ -464,27 +559,37 @@ public class ProyectoPrincipal extends javax.swing.JFrame {
             jpContenedorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jpContenedorLayout.createSequentialGroup()
                 .addComponent(jpLogin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 12, Short.MAX_VALUE))
+                .addGap(0, 0, Short.MAX_VALUE))
             .addGroup(jpContenedorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addComponent(jpInicio, javax.swing.GroupLayout.DEFAULT_SIZE, 1012, Short.MAX_VALUE))
+                .addComponent(jpInicio, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(jpContenedorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(jpContenedorLayout.createSequentialGroup()
-                    .addComponent(jpEditor, javax.swing.GroupLayout.DEFAULT_SIZE, 1006, Short.MAX_VALUE)
+                    .addComponent(jpEditor, javax.swing.GroupLayout.DEFAULT_SIZE, 994, Short.MAX_VALUE)
                     .addContainerGap()))
+            .addGroup(jpContenedorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jpContenedorLayout.createSequentialGroup()
+                    .addGap(0, 0, Short.MAX_VALUE)
+                    .addComponent(jpExplorador, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(0, 0, Short.MAX_VALUE)))
         );
         jpContenedorLayout.setVerticalGroup(
             jpContenedorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jpContenedorLayout.createSequentialGroup()
                 .addComponent(jpLogin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 12, Short.MAX_VALUE))
+                .addGap(0, 6, Short.MAX_VALUE))
             .addGroup(jpContenedorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(jpContenedorLayout.createSequentialGroup()
                     .addComponent(jpInicio, javax.swing.GroupLayout.PREFERRED_SIZE, 656, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(0, 6, Short.MAX_VALUE)))
+                    .addGap(0, 0, Short.MAX_VALUE)))
             .addGroup(jpContenedorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(jpContenedorLayout.createSequentialGroup()
                     .addComponent(jpEditor, javax.swing.GroupLayout.PREFERRED_SIZE, 656, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(0, 6, Short.MAX_VALUE)))
+                    .addGap(0, 0, Short.MAX_VALUE)))
+            .addGroup(jpContenedorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jpContenedorLayout.createSequentialGroup()
+                    .addGap(0, 0, Short.MAX_VALUE)
+                    .addComponent(jpExplorador, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(0, 0, Short.MAX_VALUE)))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -713,9 +818,11 @@ public class ProyectoPrincipal extends javax.swing.JFrame {
         // TODO add your handling code here:
         String fuente = jcbFuenteEditor.getSelectedItem().toString();
 
-        int tamano = txtAreaEditor.getFont().getSize();
+        Font fuenteActual = txtAreaEditor.getFont();
 
-        txtAreaEditor.setFont(new Font(fuente, Font.PLAIN, tamano));
+        txtAreaEditor.setFont(
+                new Font(fuente, fuenteActual.getStyle(), fuenteActual.getSize())
+        );
     }//GEN-LAST:event_jcbFuenteEditorActionPerformed
 
     private void jcbTamanoEditorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jcbTamanoEditorActionPerformed
@@ -726,12 +833,14 @@ public class ProyectoPrincipal extends javax.swing.JFrame {
 
         int tamano = tamanos[posicion];
 
-        String fuente = txtAreaEditor.getFont().getName();
+        Font fuenteActual = txtAreaEditor.getFont();
 
-        txtAreaEditor.setFont(new Font(fuente, Font.PLAIN, tamano));
+        txtAreaEditor.setFont(
+                new Font(fuenteActual.getName(), fuenteActual.getStyle(), tamano)
+        );
     }//GEN-LAST:event_jcbTamanoEditorActionPerformed
 
-    private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
+    private void btnBoldMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnBoldMouseClicked
         // TODO add your handling code here:
         Font fuenteActual = txtAreaEditor.getFont();
 
@@ -744,9 +853,9 @@ public class ProyectoPrincipal extends javax.swing.JFrame {
                     fuenteActual.deriveFont(fuenteActual.getStyle() | Font.BOLD)
             );
         }
-    }//GEN-LAST:event_jButton1MouseClicked
+    }//GEN-LAST:event_btnBoldMouseClicked
 
-    private void jButton2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton2MouseClicked
+    private void btnItalicsMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnItalicsMouseClicked
         // TODO add your handling code here:
         Font fuenteActual = txtAreaEditor.getFont();
 
@@ -759,7 +868,19 @@ public class ProyectoPrincipal extends javax.swing.JFrame {
                     fuenteActual.deriveFont(fuenteActual.getStyle() | Font.ITALIC)
             );
         }
-    }//GEN-LAST:event_jButton2MouseClicked
+    }//GEN-LAST:event_btnItalicsMouseClicked
+
+    private void btnExploradorMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnExploradorMouseClicked
+        // TODO add your handling code here:
+        jpInicio.setVisible(false);
+        jpExplorador.setVisible(true);
+    }//GEN-LAST:event_btnExploradorMouseClicked
+
+    private void btnVolverExploradorMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnVolverExploradorMouseClicked
+        // TODO add your handling code here:
+        jpExplorador.setVisible(false);
+        jpInicio.setVisible(true);
+    }//GEN-LAST:event_btnVolverExploradorMouseClicked
 
     /**
      * @param args the command line arguments
@@ -788,32 +909,40 @@ public class ProyectoPrincipal extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAbrir;
+    private javax.swing.JButton btnBold;
     private javax.swing.JButton btnCerrarSesion;
     private javax.swing.JButton btnColorEditor;
     private javax.swing.JButton btnColorFuente;
     private javax.swing.JButton btnConfiguracion;
+    private javax.swing.JButton btnCrearArchivo;
+    private javax.swing.JButton btnCrearCarpeta;
     private javax.swing.JButton btnEditor;
+    private javax.swing.JButton btnEliminarArchivo;
     private javax.swing.JButton btnExplorador;
     private javax.swing.JButton btnGuardar;
     private javax.swing.JButton btnIngresar;
     private javax.swing.JButton btnInicio;
+    private javax.swing.JButton btnItalics;
     private javax.swing.JButton btnNuevo;
     private javax.swing.JButton btnPersonalizar;
     private javax.swing.JButton btnUsuarios;
     private javax.swing.JButton btnVolver;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
+    private javax.swing.JButton btnVolverExplorador;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JComboBox<String> jcbFuenteEditor;
     private javax.swing.JComboBox<String> jcbTamanoEditor;
     private javax.swing.JPanel jpContenedor;
     private javax.swing.JPanel jpEditor;
     private javax.swing.JPanel jpEscritorio;
+    private javax.swing.JPanel jpExplorador;
     private javax.swing.JPanel jpInicio;
     private javax.swing.JPanel jpLogin;
     private javax.swing.JPanel jpNavbar;
     private javax.swing.JLabel lblContrasena;
     private javax.swing.JLabel lblEstado;
+    private javax.swing.JLabel lblExploradorTitulo;
     private javax.swing.JLabel lblFecha;
     private javax.swing.JLabel lblFuenteEditor;
     private javax.swing.JLabel lblHora;
@@ -824,6 +953,8 @@ public class ProyectoPrincipal extends javax.swing.JFrame {
     private javax.swing.JLabel lblUsuario;
     private javax.swing.JLabel lblUsuarioActual;
     private javax.swing.JProgressBar pbLogin;
+    private javax.swing.JTable tblArchivos;
+    private javax.swing.JTree treeArchivos;
     private javax.swing.JTextArea txtAreaEditor;
     private javax.swing.JPasswordField txtContrasena;
     private javax.swing.JTextField txtUsuario;
