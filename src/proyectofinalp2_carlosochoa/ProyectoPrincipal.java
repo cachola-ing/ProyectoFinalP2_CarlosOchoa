@@ -109,6 +109,8 @@ public class ProyectoPrincipal extends javax.swing.JFrame {
         jcbFuenteEditor = new javax.swing.JComboBox<>();
         lblTamanoEditor = new javax.swing.JLabel();
         jcbTamanoEditor = new javax.swing.JComboBox<>();
+        jButton1 = new javax.swing.JButton();
+        jButton2 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -371,6 +373,15 @@ public class ProyectoPrincipal extends javax.swing.JFrame {
         jcbTamanoEditor.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "12", "14", "16", "18", "20", "24", "28", "32" }));
         jcbTamanoEditor.addActionListener(this::jcbTamanoEditorActionPerformed);
 
+        jButton1.setText("B");
+        jButton1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButton1MouseClicked(evt);
+            }
+        });
+
+        jButton2.setText("I");
+
         javax.swing.GroupLayout jpEditorLayout = new javax.swing.GroupLayout(jpEditor);
         jpEditor.setLayout(jpEditorLayout);
         jpEditorLayout.setHorizontalGroup(
@@ -392,13 +403,7 @@ public class ProyectoPrincipal extends javax.swing.JFrame {
                                 .addGap(68, 68, 68)
                                 .addComponent(btnAbrir)
                                 .addGap(61, 61, 61)
-                                .addComponent(btnGuardar)
-                                .addGap(56, 56, 56)
-                                .addComponent(btnColorEditor)
-                                .addGap(52, 52, 52)
-                                .addComponent(btnColorFuente)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(btnVolver))
+                                .addComponent(btnGuardar))
                             .addGroup(jpEditorLayout.createSequentialGroup()
                                 .addComponent(lblFuenteEditor)
                                 .addGap(18, 18, 18)
@@ -406,7 +411,19 @@ public class ProyectoPrincipal extends javax.swing.JFrame {
                                 .addGap(51, 51, 51)
                                 .addComponent(lblTamanoEditor)
                                 .addGap(18, 18, 18)
-                                .addComponent(jcbTamanoEditor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jcbTamanoEditor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(30, 30, 30)
+                        .addGroup(jpEditorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jpEditorLayout.createSequentialGroup()
+                                .addComponent(btnColorEditor)
+                                .addGap(52, 52, 52)
+                                .addComponent(btnColorFuente)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(btnVolver))
+                            .addGroup(jpEditorLayout.createSequentialGroup()
+                                .addComponent(jButton1)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jButton2)
                                 .addGap(0, 0, Short.MAX_VALUE)))))
                 .addContainerGap())
         );
@@ -428,8 +445,10 @@ public class ProyectoPrincipal extends javax.swing.JFrame {
                     .addComponent(lblFuenteEditor)
                     .addComponent(jcbFuenteEditor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lblTamanoEditor)
-                    .addComponent(jcbTamanoEditor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(22, 22, 22)
+                    .addComponent(jcbTamanoEditor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButton1)
+                    .addComponent(jButton2))
+                .addGap(21, 21, 21)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 364, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(149, Short.MAX_VALUE))
         );
@@ -707,6 +726,21 @@ public class ProyectoPrincipal extends javax.swing.JFrame {
         txtAreaEditor.setFont(new Font(fuente, Font.PLAIN, tamano));
     }//GEN-LAST:event_jcbTamanoEditorActionPerformed
 
+    private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
+        // TODO add your handling code here:
+        Font fuenteActual = txtAreaEditor.getFont();
+
+        if (fuenteActual.isBold()) {
+            txtAreaEditor.setFont(
+                    fuenteActual.deriveFont(fuenteActual.getStyle() & ~Font.BOLD)
+            );
+        } else {
+            txtAreaEditor.setFont(
+                    fuenteActual.deriveFont(fuenteActual.getStyle() | Font.BOLD)
+            );
+        }
+    }//GEN-LAST:event_jButton1MouseClicked
+
     /**
      * @param args the command line arguments
      */
@@ -747,6 +781,8 @@ public class ProyectoPrincipal extends javax.swing.JFrame {
     private javax.swing.JButton btnPersonalizar;
     private javax.swing.JButton btnUsuarios;
     private javax.swing.JButton btnVolver;
+    private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JComboBox<String> jcbFuenteEditor;
     private javax.swing.JComboBox<String> jcbTamanoEditor;
