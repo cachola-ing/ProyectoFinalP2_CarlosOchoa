@@ -19,6 +19,8 @@ import java.io.FileWriter;
 //colorsito
 import javax.swing.JColorChooser;
 import java.awt.Color;
+//fuente
+import java.awt.Font;
 
 /**
  *
@@ -103,6 +105,10 @@ public class ProyectoPrincipal extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         txtAreaEditor = new javax.swing.JTextArea();
         btnColorFuente = new javax.swing.JButton();
+        lblFuenteEditor = new javax.swing.JLabel();
+        jcbFuenteEditor = new javax.swing.JComboBox<>();
+        lblTamanoEditor = new javax.swing.JLabel();
+        jcbTamanoEditor = new javax.swing.JComboBox<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -355,32 +361,53 @@ public class ProyectoPrincipal extends javax.swing.JFrame {
             }
         });
 
+        lblFuenteEditor.setText("Fuente:");
+
+        jcbFuenteEditor.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Arial", "Times New Roman", "Courier New" }));
+        jcbFuenteEditor.addActionListener(this::jcbFuenteEditorActionPerformed);
+
+        lblTamanoEditor.setText("Tamano:");
+
+        jcbTamanoEditor.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "12", "14", "16", "18", "20", "24", "28", "32" }));
+        jcbTamanoEditor.addActionListener(this::jcbTamanoEditorActionPerformed);
+
         javax.swing.GroupLayout jpEditorLayout = new javax.swing.GroupLayout(jpEditor);
         jpEditor.setLayout(jpEditorLayout);
         jpEditorLayout.setHorizontalGroup(
             jpEditorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jpEditorLayout.createSequentialGroup()
-                .addGap(64, 64, 64)
-                .addComponent(btnNuevo)
-                .addGap(68, 68, 68)
-                .addComponent(btnAbrir)
-                .addGap(61, 61, 61)
-                .addComponent(btnGuardar)
-                .addGap(56, 56, 56)
+                .addGap(477, 477, 477)
+                .addComponent(lblTituloEditor)
+                .addContainerGap(449, Short.MAX_VALUE))
+            .addGroup(jpEditorLayout.createSequentialGroup()
                 .addGroup(jpEditorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jpEditorLayout.createSequentialGroup()
-                        .addComponent(lblTituloEditor)
-                        .addContainerGap(449, Short.MAX_VALUE))
+                        .addContainerGap()
+                        .addComponent(jScrollPane1))
                     .addGroup(jpEditorLayout.createSequentialGroup()
-                        .addComponent(btnColorEditor)
-                        .addGap(52, 52, 52)
-                        .addComponent(btnColorFuente)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(btnVolver)
-                        .addGap(58, 58, 58))))
-            .addGroup(jpEditorLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jScrollPane1)
+                        .addGap(57, 57, 57)
+                        .addGroup(jpEditorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jpEditorLayout.createSequentialGroup()
+                                .addComponent(btnNuevo)
+                                .addGap(68, 68, 68)
+                                .addComponent(btnAbrir)
+                                .addGap(61, 61, 61)
+                                .addComponent(btnGuardar)
+                                .addGap(56, 56, 56)
+                                .addComponent(btnColorEditor)
+                                .addGap(52, 52, 52)
+                                .addComponent(btnColorFuente)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(btnVolver))
+                            .addGroup(jpEditorLayout.createSequentialGroup()
+                                .addComponent(lblFuenteEditor)
+                                .addGap(18, 18, 18)
+                                .addComponent(jcbFuenteEditor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(51, 51, 51)
+                                .addComponent(lblTamanoEditor)
+                                .addGap(18, 18, 18)
+                                .addComponent(jcbTamanoEditor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(0, 0, Short.MAX_VALUE)))))
                 .addContainerGap())
         );
         jpEditorLayout.setVerticalGroup(
@@ -388,7 +415,7 @@ public class ProyectoPrincipal extends javax.swing.JFrame {
             .addGroup(jpEditorLayout.createSequentialGroup()
                 .addGap(16, 16, 16)
                 .addComponent(lblTituloEditor)
-                .addGap(61, 61, 61)
+                .addGap(18, 18, 18)
                 .addGroup(jpEditorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnNuevo)
                     .addComponent(btnAbrir)
@@ -397,8 +424,14 @@ public class ProyectoPrincipal extends javax.swing.JFrame {
                     .addComponent(btnVolver)
                     .addComponent(btnColorFuente))
                 .addGap(18, 18, 18)
+                .addGroup(jpEditorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblFuenteEditor)
+                    .addComponent(jcbFuenteEditor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblTamanoEditor)
+                    .addComponent(jcbTamanoEditor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(22, 22, 22)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 364, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(154, Short.MAX_VALUE))
+                .addContainerGap(149, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout jpContenedorLayout = new javax.swing.GroupLayout(jpContenedor);
@@ -652,6 +685,28 @@ public class ProyectoPrincipal extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_btnColorFuenteMouseClicked
 
+    private void jcbFuenteEditorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jcbFuenteEditorActionPerformed
+        // TODO add your handling code here:
+        String fuente = jcbFuenteEditor.getSelectedItem().toString();
+
+        int tamano = txtAreaEditor.getFont().getSize();
+
+        txtAreaEditor.setFont(new Font(fuente, Font.PLAIN, tamano));
+    }//GEN-LAST:event_jcbFuenteEditorActionPerformed
+
+    private void jcbTamanoEditorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jcbTamanoEditorActionPerformed
+        // TODO add your handling code here:
+        int posicion = jcbTamanoEditor.getSelectedIndex();
+
+        int[] tamanos = {12, 14, 16, 18, 20, 24, 28, 32};
+
+        int tamano = tamanos[posicion];
+
+        String fuente = txtAreaEditor.getFont().getName();
+
+        txtAreaEditor.setFont(new Font(fuente, Font.PLAIN, tamano));
+    }//GEN-LAST:event_jcbTamanoEditorActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -693,6 +748,8 @@ public class ProyectoPrincipal extends javax.swing.JFrame {
     private javax.swing.JButton btnUsuarios;
     private javax.swing.JButton btnVolver;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JComboBox<String> jcbFuenteEditor;
+    private javax.swing.JComboBox<String> jcbTamanoEditor;
     private javax.swing.JPanel jpContenedor;
     private javax.swing.JPanel jpEditor;
     private javax.swing.JPanel jpEscritorio;
@@ -702,8 +759,10 @@ public class ProyectoPrincipal extends javax.swing.JFrame {
     private javax.swing.JLabel lblContrasena;
     private javax.swing.JLabel lblEstado;
     private javax.swing.JLabel lblFecha;
+    private javax.swing.JLabel lblFuenteEditor;
     private javax.swing.JLabel lblHora;
     private javax.swing.JLabel lblNombreSistema;
+    private javax.swing.JLabel lblTamanoEditor;
     private javax.swing.JLabel lblTitulo;
     private javax.swing.JLabel lblTituloEditor;
     private javax.swing.JLabel lblUsuario;
