@@ -21,6 +21,10 @@ import javax.swing.JColorChooser;
 import java.awt.Color;
 //fuente
 import java.awt.Font;
+//modelos
+import javax.swing.tree.DefaultMutableTreeNode;
+import javax.swing.tree.DefaultTreeModel;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -61,6 +65,29 @@ public class ProyectoPrincipal extends javax.swing.JFrame {
         });
 
         timer.start();
+        //Arbol
+        DefaultMutableTreeNode raiz = new DefaultMutableTreeNode("CacholaOS");
+
+        DefaultMutableTreeNode documentos = new DefaultMutableTreeNode("Documentos");
+        DefaultMutableTreeNode tareas = new DefaultMutableTreeNode("Tareas");
+        DefaultMutableTreeNode otros = new DefaultMutableTreeNode("Otros");
+
+        raiz.add(documentos);
+        raiz.add(tareas);
+        raiz.add(otros);
+
+        DefaultTreeModel modeloArbol = new DefaultTreeModel(raiz);
+
+        treeArchivos.setModel(modeloArbol);
+        //Tabla
+        DefaultTableModel modeloTabla = new DefaultTableModel();
+
+        modeloTabla.addColumn("Nombre");
+        modeloTabla.addColumn("Tipo");
+        modeloTabla.addColumn("Tamaño");
+        modeloTabla.addColumn("Ruta");
+
+        tblArchivos.setModel(modeloTabla);
     }
 
     /**
