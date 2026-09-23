@@ -5,9 +5,20 @@
 package proyectofinalp2_carlosochoa;
 
 import javax.swing.JOptionPane;
+//hora y fecha
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import javax.swing.Timer;
+//archivo.txt
+import javax.swing.JFileChooser;
+import javax.swing.filechooser.FileNameExtensionFilter;
+import java.io.File;
+import java.io.FileReader;
+import java.io.BufferedReader;
+import java.io.FileWriter;
+//colorsito
+import javax.swing.JColorChooser;
+import java.awt.Color;
 
 /**
  *
@@ -37,7 +48,7 @@ public class ProyectoPrincipal extends javax.swing.JFrame {
 
         jpLogin.setVisible(true);
         jpInicio.setVisible(false);
-       jpEditor.setVisible(false);
+        jpEditor.setVisible(false);
 
         Timer timer = new Timer(1000, e -> {
             Date fechaActual = new Date();
@@ -91,6 +102,7 @@ public class ProyectoPrincipal extends javax.swing.JFrame {
         btnVolver = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         txtAreaEditor = new javax.swing.JTextArea();
+        btnColorFuente = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -298,18 +310,50 @@ public class ProyectoPrincipal extends javax.swing.JFrame {
         lblTituloEditor.setText("Editor de Texto");
 
         btnNuevo.setText("Nuevo");
+        btnNuevo.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnNuevoMouseClicked(evt);
+            }
+        });
 
         btnAbrir.setText("Abrir");
+        btnAbrir.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnAbrirMouseClicked(evt);
+            }
+        });
 
         btnGuardar.setText("Guardar");
+        btnGuardar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnGuardarMouseClicked(evt);
+            }
+        });
 
-        btnColorEditor.setText("Cambiar Color");
+        btnColorEditor.setText("Color Fondo");
+        btnColorEditor.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnColorEditorMouseClicked(evt);
+            }
+        });
 
         btnVolver.setText("Volver");
+        btnVolver.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnVolverMouseClicked(evt);
+            }
+        });
 
         txtAreaEditor.setColumns(20);
         txtAreaEditor.setRows(5);
         jScrollPane1.setViewportView(txtAreaEditor);
+
+        btnColorFuente.setText("Color Fuente");
+        btnColorFuente.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnColorFuenteMouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout jpEditorLayout = new javax.swing.GroupLayout(jpEditor);
         jpEditor.setLayout(jpEditorLayout);
@@ -329,6 +373,8 @@ public class ProyectoPrincipal extends javax.swing.JFrame {
                         .addContainerGap(449, Short.MAX_VALUE))
                     .addGroup(jpEditorLayout.createSequentialGroup()
                         .addComponent(btnColorEditor)
+                        .addGap(52, 52, 52)
+                        .addComponent(btnColorFuente)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(btnVolver)
                         .addGap(58, 58, 58))))
@@ -348,7 +394,8 @@ public class ProyectoPrincipal extends javax.swing.JFrame {
                     .addComponent(btnAbrir)
                     .addComponent(btnGuardar)
                     .addComponent(btnColorEditor)
-                    .addComponent(btnVolver))
+                    .addComponent(btnVolver)
+                    .addComponent(btnColorFuente))
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 364, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(154, Short.MAX_VALUE))
@@ -491,9 +538,119 @@ public class ProyectoPrincipal extends javax.swing.JFrame {
         // TODO add your handling code here:
         jpInicio.setVisible(false);
         jpEditor.setVisible(true);
-        
-        
+
+
     }//GEN-LAST:event_btnEditorMouseClicked
+
+    private void btnVolverMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnVolverMouseClicked
+        // TODO add your handling code here:
+        jpEditor.setVisible(false);
+        jpInicio.setVisible(true);
+    }//GEN-LAST:event_btnVolverMouseClicked
+
+    private void btnNuevoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnNuevoMouseClicked
+        // TODO add your handling code here:
+        txtAreaEditor.setText("");
+
+    }//GEN-LAST:event_btnNuevoMouseClicked
+
+    private void btnAbrirMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAbrirMouseClicked
+        // TODO add your handling code here:
+        JFileChooser selector = new JFileChooser();
+
+        FileNameExtensionFilter filtro
+                = new FileNameExtensionFilter("Archivos de texto (*.txt)", "txt");
+
+        selector.setFileFilter(filtro);
+
+        int opcion = selector.showOpenDialog(this);
+
+        if (opcion == JFileChooser.APPROVE_OPTION) {
+
+            File archivo = selector.getSelectedFile();
+
+            try {
+                BufferedReader lector = new BufferedReader(new FileReader(archivo));
+
+                txtAreaEditor.setText("");
+
+                String linea;
+
+                while ((linea = lector.readLine()) != null) {
+                    txtAreaEditor.append(linea + "\n");
+                }
+
+                lector.close();
+
+            } catch (Exception e) {
+                JOptionPane.showMessageDialog(this,
+                        "No se pudo abrir el archivo");
+            }
+        }
+    }//GEN-LAST:event_btnAbrirMouseClicked
+
+    private void btnGuardarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnGuardarMouseClicked
+        // TODO add your handling code here:
+        JFileChooser selector = new JFileChooser();
+
+        FileNameExtensionFilter filtro
+                = new FileNameExtensionFilter("Archivos de texto (*.txt)", "txt");
+
+        selector.setFileFilter(filtro);
+
+        int opcion = selector.showSaveDialog(this);
+
+        if (opcion == JFileChooser.APPROVE_OPTION) {
+
+            File archivo = selector.getSelectedFile();
+
+            String ruta = archivo.getAbsolutePath();
+
+            if (!ruta.endsWith(".txt")) {
+                archivo = new File(ruta + ".txt");
+            }
+
+            try {
+                FileWriter escritor = new FileWriter(archivo);
+
+                escritor.write(txtAreaEditor.getText());
+                escritor.close();
+
+                JOptionPane.showMessageDialog(this,
+                        "Archivo guardado correctamente");
+
+            } catch (Exception e) {
+                JOptionPane.showMessageDialog(this,
+                        "No se pudo guardar el archivo");
+            }
+        }
+    }//GEN-LAST:event_btnGuardarMouseClicked
+
+    private void btnColorEditorMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnColorEditorMouseClicked
+        // TODO add your handling code here:
+        Color color = JColorChooser.showDialog(
+                this,
+                "Seleccione un color",
+                txtAreaEditor.getBackground()
+        );
+
+        if (color != null) {
+            txtAreaEditor.setBackground(color);
+        }
+    }//GEN-LAST:event_btnColorEditorMouseClicked
+
+    private void btnColorFuenteMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnColorFuenteMouseClicked
+        // TODO add your handling code here:
+        Color color = JColorChooser.showDialog(
+                this,
+                "Seleccione el color de la fuente",
+                txtAreaEditor.getForeground()
+        );
+
+        if (color != null) {
+            txtAreaEditor.setForeground(color);
+        }
+    }//GEN-LAST:event_btnColorFuenteMouseClicked
 
     /**
      * @param args the command line arguments
@@ -524,6 +681,7 @@ public class ProyectoPrincipal extends javax.swing.JFrame {
     private javax.swing.JButton btnAbrir;
     private javax.swing.JButton btnCerrarSesion;
     private javax.swing.JButton btnColorEditor;
+    private javax.swing.JButton btnColorFuente;
     private javax.swing.JButton btnConfiguracion;
     private javax.swing.JButton btnEditor;
     private javax.swing.JButton btnExplorador;
