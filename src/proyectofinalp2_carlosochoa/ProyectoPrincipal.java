@@ -34,6 +34,7 @@ public class ProyectoPrincipal extends javax.swing.JFrame {
 
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(ProyectoPrincipal.class.getName());
 
+    File carpetaPrincipal = new File("ArchivosCacholaOS");
     Usuario[] usuarios = new Usuario[20];
     int cantidadUsuarios = 0;
 
@@ -88,6 +89,15 @@ public class ProyectoPrincipal extends javax.swing.JFrame {
         modeloTabla.addColumn("Ruta");
 
         tblArchivos.setModel(modeloTabla);
+        
+        //carpeta principal
+        if (!carpetaPrincipal.exists()) {
+            carpetaPrincipal.mkdir();
+        }
+
+        new File(carpetaPrincipal, "Documentos").mkdir();
+        new File(carpetaPrincipal, "Tareas").mkdir();
+        new File(carpetaPrincipal, "Otros").mkdir();
     }
 
     /**
@@ -523,6 +533,11 @@ public class ProyectoPrincipal extends javax.swing.JFrame {
         btnCrearArchivo.setText("Crear Archivo");
 
         btnCrearCarpeta.setText("Crear Carpeta");
+        btnCrearCarpeta.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnCrearCarpetaMouseClicked(evt);
+            }
+        });
 
         btnEliminarArchivo.setBackground(new java.awt.Color(255, 0, 0));
         btnEliminarArchivo.setText("Eliminar");
@@ -908,6 +923,51 @@ public class ProyectoPrincipal extends javax.swing.JFrame {
         jpExplorador.setVisible(false);
         jpInicio.setVisible(true);
     }//GEN-LAST:event_btnVolverExploradorMouseClicked
+
+    private void btnCrearCarpetaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCrearCarpetaMouseClicked
+        // TODO add your handling code here:
+        DefaultMutableTreeNode seleccionado = (DefaultMutableTreeNode) treeArchivos.getLastSelectedPathComponent();
+
+        if (seleccionado == null) {
+            JOptionPane.showMessageDialog(this, "Seleccione una carpeta");
+            return;
+        }
+
+        String nombre = JOptionPane.showInputDialog(this, "Nombre de la nueva carpeta:");
+
+        if (nombre == null || nombre.trim().isEmpty()) {
+            return;
+        }
+
+        File carpeta;
+
+        if (seleccionado.toString().equals("CacholaOS")) {
+            carpeta = new File(carpetaPrincipal, nombre);
+        } else {
+            carpeta = new File(carpetaPrincipal, seleccionado.toString() + File.separator + nombre);
+        }
+
+        if (carpeta.exists()) {
+            JOptionPane.showMessageDialog(this, "Ya existe una carpeta con ese nombre");
+            return;
+        }
+
+        if (carpeta.mkdir()) {
+
+            DefaultMutableTreeNode nuevaCarpeta = new DefaultMutableTreeNode(nombre);
+
+            seleccionado.add(nuevaCarpeta);
+
+            DefaultTreeModel modelo = (DefaultTreeModel) treeArchivos.getModel();
+
+            modelo.reload(seleccionado);
+
+            JOptionPane.showMessageDialog(this, "Carpeta creada correctamente");
+
+        } else {
+            JOptionPane.showMessageDialog(this, "No se pudo crear la carpeta");
+        }
+    }//GEN-LAST:event_btnCrearCarpetaMouseClicked
 
     /**
      * @param args the command line arguments
