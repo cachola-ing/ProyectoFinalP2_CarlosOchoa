@@ -176,25 +176,47 @@
           <SubComponents>
             <Component class="javax.swing.JLabel" name="lblTitulo">
               <Properties>
+                <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                  <Color type="null"/>
+                </Property>
                 <Property name="text" type="java.lang.String" value="CACHOLA OS"/>
               </Properties>
             </Component>
             <Component class="javax.swing.JLabel" name="lblUsuario">
               <Properties>
+                <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                  <Color type="null"/>
+                </Property>
                 <Property name="text" type="java.lang.String" value="Usuario"/>
               </Properties>
             </Component>
             <Component class="javax.swing.JTextField" name="txtUsuario">
+              <Properties>
+                <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                  <Color type="null"/>
+                </Property>
+              </Properties>
             </Component>
             <Component class="javax.swing.JLabel" name="lblContrasena">
               <Properties>
+                <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                  <Color type="null"/>
+                </Property>
                 <Property name="text" type="java.lang.String" value="Contrasena"/>
               </Properties>
             </Component>
             <Component class="javax.swing.JPasswordField" name="txtContrasena">
+              <Properties>
+                <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                  <Color type="null"/>
+                </Property>
+              </Properties>
             </Component>
             <Component class="javax.swing.JButton" name="btnIngresar">
               <Properties>
+                <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                  <Color type="null"/>
+                </Property>
                 <Property name="text" type="java.lang.String" value="Ingresar"/>
               </Properties>
               <Events>
@@ -202,9 +224,17 @@
               </Events>
             </Component>
             <Component class="javax.swing.JProgressBar" name="pbLogin">
+              <Properties>
+                <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                  <Color type="null"/>
+                </Property>
+              </Properties>
             </Component>
             <Component class="javax.swing.JLabel" name="lblEstado">
               <Properties>
+                <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                  <Color type="null"/>
+                </Property>
                 <Property name="text" type="java.lang.String" value="Ingrese sus credenciales"/>
               </Properties>
             </Component>

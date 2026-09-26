@@ -25,6 +25,8 @@ import java.awt.Font;
 import javax.swing.tree.DefaultMutableTreeNode;
 import javax.swing.tree.DefaultTreeModel;
 import javax.swing.table.DefaultTableModel;
+//arbol
+import javax.swing.tree.TreePath;
 
 /**
  *
@@ -167,12 +169,20 @@ public class ProyectoPrincipal extends javax.swing.JFrame {
 
         jpLogin.setPreferredSize(new java.awt.Dimension(1000, 650));
 
+        lblTitulo.setForeground(null);
         lblTitulo.setText("CACHOLA OS");
 
+        lblUsuario.setForeground(null);
         lblUsuario.setText("Usuario");
 
+        txtUsuario.setForeground(null);
+
+        lblContrasena.setForeground(null);
         lblContrasena.setText("Contrasena");
 
+        txtContrasena.setForeground(null);
+
+        btnIngresar.setForeground(null);
         btnIngresar.setText("Ingresar");
         btnIngresar.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -180,6 +190,9 @@ public class ProyectoPrincipal extends javax.swing.JFrame {
             }
         });
 
+        pbLogin.setForeground(null);
+
+        lblEstado.setForeground(null);
         lblEstado.setText("Ingrese sus credenciales");
 
         javax.swing.GroupLayout jpLoginLayout = new javax.swing.GroupLayout(jpLogin);
@@ -939,13 +952,20 @@ public class ProyectoPrincipal extends javax.swing.JFrame {
             return;
         }
 
-        File carpeta;
+        TreePath rutaSeleccionada = treeArchivos.getSelectionPath();
 
-        if (seleccionado.toString().equals("CacholaOS")) {
-            carpeta = new File(carpetaPrincipal, nombre);
-        } else {
-            carpeta = new File(carpetaPrincipal, seleccionado.toString() + File.separator + nombre);
+        Object[] partesRuta = rutaSeleccionada.getPath();
+
+        File carpetaSeleccionada = carpetaPrincipal;
+
+        for (int i = 1; i < partesRuta.length; i++) {
+            carpetaSeleccionada = new File(
+                    carpetaSeleccionada,
+                    partesRuta[i].toString()
+            );
         }
+
+        File carpeta = new File(carpetaSeleccionada, nombre);
 
         if (carpeta.exists()) {
             JOptionPane.showMessageDialog(this, "Ya existe una carpeta con ese nombre");
