@@ -692,19 +692,18 @@
                               <EmptySpace min="-2" pref="39" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="1" attributes="0">
                                   <Component id="btnVolverExplorador" min="-2" max="-2" attributes="0"/>
-                                  <Group type="103" groupAlignment="0" attributes="0">
-                                      <Group type="102" attributes="0">
-                                          <Component id="btnCrearArchivo" min="-2" max="-2" attributes="0"/>
-                                          <EmptySpace type="separate" max="-2" attributes="0"/>
-                                          <Component id="btnCrearCarpeta" min="-2" max="-2" attributes="0"/>
-                                          <EmptySpace type="separate" max="-2" attributes="0"/>
-                                          <Component id="btnEliminarArchivo" min="-2" max="-2" attributes="0"/>
-                                      </Group>
-                                      <Group type="102" attributes="0">
-                                          <Component id="jScrollPane2" min="-2" pref="200" max="-2" attributes="0"/>
-                                          <EmptySpace min="-2" pref="68" max="-2" attributes="0"/>
-                                          <Component id="jScrollPane3" min="-2" pref="654" max="-2" attributes="0"/>
-                                      </Group>
+                                  <Group type="102" attributes="0">
+                                      <Component id="btnCrearArchivo" min="-2" max="-2" attributes="0"/>
+                                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                                      <Component id="btnCrearCarpeta" min="-2" max="-2" attributes="0"/>
+                                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                                      <Component id="btnEliminarArchivo" min="-2" max="-2" attributes="0"/>
+                                      <EmptySpace min="-2" pref="600" max="-2" attributes="0"/>
+                                  </Group>
+                                  <Group type="102" alignment="0" attributes="0">
+                                      <Component id="jScrollPane2" min="-2" pref="200" max="-2" attributes="0"/>
+                                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                                      <Component id="jScrollPane3" min="-2" pref="704" max="-2" attributes="0"/>
                                   </Group>
                               </Group>
                           </Group>
@@ -750,6 +749,9 @@
               <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
               <SubComponents>
                 <Component class="javax.swing.JTree" name="treeArchivos">
+                  <Events>
+                    <EventHandler event="valueChanged" listener="javax.swing.event.TreeSelectionListener" parameters="javax.swing.event.TreeSelectionEvent" handler="treeArchivosValueChanged"/>
+                  </Events>
                 </Component>
               </SubComponents>
             </Container>
@@ -805,6 +807,9 @@
               <Properties>
                 <Property name="text" type="java.lang.String" value="Crear Archivo"/>
               </Properties>
+              <Events>
+                <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="btnCrearArchivoMouseClicked"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JButton" name="btnCrearCarpeta">
               <Properties>
@@ -821,6 +826,9 @@
                 </Property>
                 <Property name="text" type="java.lang.String" value="Eliminar"/>
               </Properties>
+              <Events>
+                <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="btnEliminarArchivoMouseClicked"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JButton" name="btnVolverExplorador">
               <Properties>

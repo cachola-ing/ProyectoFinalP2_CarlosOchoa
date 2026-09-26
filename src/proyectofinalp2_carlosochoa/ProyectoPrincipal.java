@@ -69,30 +69,25 @@ public class ProyectoPrincipal extends javax.swing.JFrame {
 
         timer.start();
         //Arbol
-        DefaultMutableTreeNode raiz = new DefaultMutableTreeNode("CacholaOS");
 
-        DefaultMutableTreeNode documentos = new DefaultMutableTreeNode("Documentos");
-        DefaultMutableTreeNode tareas = new DefaultMutableTreeNode("Tareas");
-        DefaultMutableTreeNode otros = new DefaultMutableTreeNode("Otros");
+        if (!carpetaPrincipal.exists()) {
+            carpetaPrincipal.mkdir();
+        }
 
-        raiz.add(documentos);
-        raiz.add(tareas);
-        raiz.add(otros);
+        new File(carpetaPrincipal, "Documentos").mkdir();
+        new File(carpetaPrincipal, "Tareas").mkdir();
+        new File(carpetaPrincipal, "Otros").mkdir();
 
-        DefaultTreeModel modeloArbol = new DefaultTreeModel(raiz);
+        DefaultMutableTreeNode raiz
+                = new DefaultMutableTreeNode("CacholaOS");
+
+        cargarArchivos(carpetaPrincipal, raiz);
+
+        DefaultTreeModel modeloArbol
+                = new DefaultTreeModel(raiz);
 
         treeArchivos.setModel(modeloArbol);
-        //Tabla
-        DefaultTableModel modeloTabla = new DefaultTableModel();
 
-        modeloTabla.addColumn("Nombre");
-        modeloTabla.addColumn("Tipo");
-        modeloTabla.addColumn("Tamaño");
-        modeloTabla.addColumn("Ruta");
-
-        tblArchivos.setModel(modeloTabla);
-        
-        //carpeta principal
         if (!carpetaPrincipal.exists()) {
             carpetaPrincipal.mkdir();
         }
@@ -528,6 +523,7 @@ public class ProyectoPrincipal extends javax.swing.JFrame {
 
         lblExploradorTitulo.setText("Explorador de Archivos");
 
+        treeArchivos.addTreeSelectionListener(this::treeArchivosValueChanged);
         jScrollPane2.setViewportView(treeArchivos);
 
         tblArchivos.setModel(new javax.swing.table.DefaultTableModel(
@@ -544,6 +540,11 @@ public class ProyectoPrincipal extends javax.swing.JFrame {
         jScrollPane3.setViewportView(tblArchivos);
 
         btnCrearArchivo.setText("Crear Archivo");
+        btnCrearArchivo.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnCrearArchivoMouseClicked(evt);
+            }
+        });
 
         btnCrearCarpeta.setText("Crear Carpeta");
         btnCrearCarpeta.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -554,6 +555,11 @@ public class ProyectoPrincipal extends javax.swing.JFrame {
 
         btnEliminarArchivo.setBackground(new java.awt.Color(255, 0, 0));
         btnEliminarArchivo.setText("Eliminar");
+        btnEliminarArchivo.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnEliminarArchivoMouseClicked(evt);
+            }
+        });
 
         btnVolverExplorador.setBackground(new java.awt.Color(255, 0, 0));
         btnVolverExplorador.setText("Volver");
@@ -576,17 +582,17 @@ public class ProyectoPrincipal extends javax.swing.JFrame {
                         .addGap(39, 39, 39)
                         .addGroup(jpExploradorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(btnVolverExplorador)
-                            .addGroup(jpExploradorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addGroup(jpExploradorLayout.createSequentialGroup()
-                                    .addComponent(btnCrearArchivo)
-                                    .addGap(18, 18, 18)
-                                    .addComponent(btnCrearCarpeta)
-                                    .addGap(18, 18, 18)
-                                    .addComponent(btnEliminarArchivo))
-                                .addGroup(jpExploradorLayout.createSequentialGroup()
-                                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGap(68, 68, 68)
-                                    .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 654, javax.swing.GroupLayout.PREFERRED_SIZE))))))
+                            .addGroup(jpExploradorLayout.createSequentialGroup()
+                                .addComponent(btnCrearArchivo)
+                                .addGap(18, 18, 18)
+                                .addComponent(btnCrearCarpeta)
+                                .addGap(18, 18, 18)
+                                .addComponent(btnEliminarArchivo)
+                                .addGap(600, 600, 600))
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jpExploradorLayout.createSequentialGroup()
+                                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 704, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                 .addContainerGap(39, Short.MAX_VALUE))
         );
         jpExploradorLayout.setVerticalGroup(
@@ -989,6 +995,197 @@ public class ProyectoPrincipal extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_btnCrearCarpetaMouseClicked
 
+    private void btnCrearArchivoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCrearArchivoMouseClicked
+        // TODO add your handling code here:
+        DefaultMutableTreeNode seleccionado
+                = (DefaultMutableTreeNode) treeArchivos.getLastSelectedPathComponent();
+
+        if (seleccionado == null) {
+            JOptionPane.showMessageDialog(this, "Seleccione una carpeta");
+            return;
+        }
+
+        TreePath rutaSeleccionada = treeArchivos.getSelectionPath();
+
+        Object[] partesRuta = rutaSeleccionada.getPath();
+
+        File carpetaSeleccionada = carpetaPrincipal;
+
+        for (int i = 1; i < partesRuta.length; i++) {
+            carpetaSeleccionada = new File(
+                    carpetaSeleccionada,
+                    partesRuta[i].toString()
+            );
+        }
+
+        if (!carpetaSeleccionada.isDirectory()) {
+            JOptionPane.showMessageDialog(this, "Debe seleccionar una carpeta");
+            return;
+        }
+
+        String nombre = JOptionPane.showInputDialog(
+                this,
+                "Nombre del nuevo archivo:"
+        );
+
+        if (nombre == null || nombre.trim().isEmpty()) {
+            return;
+        }
+
+        if (!nombre.endsWith(".txt")) {
+            nombre = nombre + ".txt";
+        }
+
+        File archivo = new File(carpetaSeleccionada, nombre);
+
+        if (archivo.exists()) {
+            JOptionPane.showMessageDialog(this,
+                    "Ya existe un archivo con ese nombre");
+            return;
+        }
+
+        try {
+
+            if (archivo.createNewFile()) {
+
+                DefaultMutableTreeNode nuevoArchivo
+                        = new DefaultMutableTreeNode(nombre);
+
+                seleccionado.add(nuevoArchivo);
+
+                DefaultTreeModel modelo
+                        = (DefaultTreeModel) treeArchivos.getModel();
+
+                modelo.reload(seleccionado);
+
+                JOptionPane.showMessageDialog(this,
+                        "Archivo creado correctamente");
+            }
+
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this,
+                    "No se pudo crear el archivo");
+        }
+    }//GEN-LAST:event_btnCrearArchivoMouseClicked
+
+    private void treeArchivosValueChanged(javax.swing.event.TreeSelectionEvent evt) {//GEN-FIRST:event_treeArchivosValueChanged
+        // TODO add your handling code here:
+        DefaultMutableTreeNode seleccionado
+                = (DefaultMutableTreeNode) treeArchivos.getLastSelectedPathComponent();
+
+        if (seleccionado == null) {
+            return;
+        }
+
+        TreePath rutaSeleccionada = treeArchivos.getSelectionPath();
+
+        Object[] partesRuta = rutaSeleccionada.getPath();
+
+        File carpetaSeleccionada = carpetaPrincipal;
+
+        for (int i = 1; i < partesRuta.length; i++) {
+            carpetaSeleccionada = new File(
+                    carpetaSeleccionada,
+                    partesRuta[i].toString()
+            );
+        }
+
+        DefaultTableModel modelo
+                = (DefaultTableModel) tblArchivos.getModel();
+
+        modelo.setRowCount(0);
+
+        if (!carpetaSeleccionada.isDirectory()) {
+            return;
+        }
+
+        File[] archivos = carpetaSeleccionada.listFiles();
+
+        if (archivos == null) {
+            return;
+        }
+
+        for (int i = 0; i < archivos.length; i++) {
+
+            String tipo;
+
+            if (archivos[i].isDirectory()) {
+                tipo = "Carpeta";
+            } else {
+                tipo = "Archivo";
+            }
+
+            Object[] fila = {
+                archivos[i].getName(),
+                tipo,
+                archivos[i].length() + " bytes",
+                archivos[i].getAbsolutePath()
+            };
+
+            modelo.addRow(fila);
+        }
+    }//GEN-LAST:event_treeArchivosValueChanged
+
+    private void btnEliminarArchivoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnEliminarArchivoMouseClicked
+        // TODO add your handling code here:
+        DefaultMutableTreeNode seleccionado
+                = (DefaultMutableTreeNode) treeArchivos.getLastSelectedPathComponent();
+
+        if (seleccionado == null) {
+            JOptionPane.showMessageDialog(this,
+                    "Seleccione un archivo o carpeta");
+            return;
+        }
+
+        if (seleccionado.isRoot()) {
+            JOptionPane.showMessageDialog(this,
+                    "No puede eliminar CacholaOS");
+            return;
+        }
+
+        TreePath rutaSeleccionada = treeArchivos.getSelectionPath();
+
+        Object[] partesRuta = rutaSeleccionada.getPath();
+
+        File archivoSeleccionado = carpetaPrincipal;
+
+        for (int i = 1; i < partesRuta.length; i++) {
+            archivoSeleccionado = new File(
+                    archivoSeleccionado,
+                    partesRuta[i].toString()
+            );
+        }
+
+        int respuesta = JOptionPane.showConfirmDialog(
+                this,
+                "¿Está seguro que desea eliminar " + archivoSeleccionado.getName() + "?",
+                "Confirmar eliminación",
+                JOptionPane.YES_NO_OPTION
+        );
+
+        if (respuesta != JOptionPane.YES_OPTION) {
+            return;
+        }
+
+        if (archivoSeleccionado.delete()) {
+
+            DefaultMutableTreeNode padre
+                    = (DefaultMutableTreeNode) seleccionado.getParent();
+
+            DefaultTreeModel modelo
+                    = (DefaultTreeModel) treeArchivos.getModel();
+
+            modelo.removeNodeFromParent(seleccionado);
+
+            JOptionPane.showMessageDialog(this,
+                    "Eliminado correctamente");
+
+        } else {
+            JOptionPane.showMessageDialog(this,
+                    "No se pudo eliminar. Si es una carpeta, debe estar vacía.");
+        }
+    }//GEN-LAST:event_btnEliminarArchivoMouseClicked
+
     /**
      * @param args the command line arguments
      */
@@ -1012,6 +1209,28 @@ public class ProyectoPrincipal extends javax.swing.JFrame {
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(() -> new ProyectoPrincipal().setVisible(true));
+    }
+
+    //metodos
+    private void cargarArchivos(File carpeta, DefaultMutableTreeNode nodo) {
+
+        File[] archivos = carpeta.listFiles();
+
+        if (archivos == null) {
+            return;
+        }
+
+        for (int i = 0; i < archivos.length; i++) {
+
+            DefaultMutableTreeNode nuevoNodo
+                    = new DefaultMutableTreeNode(archivos[i].getName());
+
+            nodo.add(nuevoNodo);
+
+            if (archivos[i].isDirectory()) {
+                cargarArchivos(archivos[i], nuevoNodo);
+            }
+        }
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
