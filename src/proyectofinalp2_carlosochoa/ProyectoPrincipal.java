@@ -62,6 +62,7 @@ public class ProyectoPrincipal extends javax.swing.JFrame {
         jpEditor.setVisible(false);
         jpExplorador.setVisible(false);
         jpUsuarios.setVisible(false);
+        jpConfiguracion.setVisible(false);
 
         Timer timer = new Timer(1000, e -> {
             Date fechaActual = new Date();
@@ -122,6 +123,7 @@ public class ProyectoPrincipal extends javax.swing.JFrame {
         cbTipoUsuario = new javax.swing.JComboBox<>();
         btnGuardarUsuario = new javax.swing.JButton();
         btnCancelarUsuario = new javax.swing.JButton();
+        buttonGroupEstilo = new javax.swing.ButtonGroup();
         jpContenedor = new javax.swing.JPanel();
         jpLogin = new javax.swing.JPanel();
         lblTitulo = new javax.swing.JLabel();
@@ -180,6 +182,23 @@ public class ProyectoPrincipal extends javax.swing.JFrame {
         btnEditarUsuario = new javax.swing.JButton();
         btnEliminarUsuario = new javax.swing.JButton();
         btnVolverUsuarios = new javax.swing.JButton();
+        jpConfiguracion = new javax.swing.JPanel();
+        jLabel5 = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
+        btnColorFondo = new javax.swing.JButton();
+        btnColorNavBar = new javax.swing.JButton();
+        jLabel7 = new javax.swing.JLabel();
+        jcbFuenteConfiguracion = new javax.swing.JComboBox<>();
+        jLabel8 = new javax.swing.JLabel();
+        jcbTamanoConfiguracion = new javax.swing.JComboBox<>();
+        jLabel9 = new javax.swing.JLabel();
+        rbNormal = new javax.swing.JRadioButton();
+        rbNegrita = new javax.swing.JRadioButton();
+        rbItalica = new javax.swing.JRadioButton();
+        jLabel10 = new javax.swing.JLabel();
+        btnImagenFondo = new javax.swing.JButton();
+        btnGuardarConfiguracion = new javax.swing.JButton();
+        btnVolverConfiguracion = new javax.swing.JButton();
 
         itemAbrir.setText("Abrir");
         itemAbrir.addActionListener(this::itemAbrirActionPerformed);
@@ -193,7 +212,7 @@ public class ProyectoPrincipal extends javax.swing.JFrame {
         itemEliminar.addActionListener(this::itemEliminarActionPerformed);
         popupArchivos.add(itemEliminar);
 
-        dialogUsuario.setPreferredSize(new java.awt.Dimension(402, 370));
+        dialogUsuario.setPreferredSize(new java.awt.Dimension(402, 500));
 
         jLabel2.setText("Usuario:");
 
@@ -242,7 +261,7 @@ public class ProyectoPrincipal extends javax.swing.JFrame {
                         .addComponent(jLabel3)
                         .addGap(166, 166, 166))))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, dialogUsuarioLayout.createSequentialGroup()
-                .addGap(0, 115, Short.MAX_VALUE)
+                .addGap(0, 117, Short.MAX_VALUE)
                 .addGroup(dialogUsuarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, dialogUsuarioLayout.createSequentialGroup()
                         .addComponent(jLabel4)
@@ -272,7 +291,7 @@ public class ProyectoPrincipal extends javax.swing.JFrame {
                 .addGroup(dialogUsuarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnCancelarUsuario)
                     .addComponent(btnGuardarUsuario))
-                .addContainerGap(18, Short.MAX_VALUE))
+                .addContainerGap(116, Short.MAX_VALUE))
         );
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -378,6 +397,11 @@ public class ProyectoPrincipal extends javax.swing.JFrame {
         });
 
         btnPersonalizar.setText("Personalizar");
+        btnPersonalizar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnPersonalizarMouseClicked(evt);
+            }
+        });
 
         lblUsuarioActual.setForeground(new java.awt.Color(255, 255, 255));
         lblUsuarioActual.setText("Usuario");
@@ -441,6 +465,11 @@ public class ProyectoPrincipal extends javax.swing.JFrame {
         });
 
         btnConfiguracion.setText("Configuración");
+        btnConfiguracion.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnConfiguracionMouseClicked(evt);
+            }
+        });
 
         lblHora.setForeground(new java.awt.Color(255, 255, 255));
         lblHora.setText("Hora");
@@ -831,6 +860,147 @@ public class ProyectoPrincipal extends javax.swing.JFrame {
                 .addContainerGap(149, Short.MAX_VALUE))
         );
 
+        jpConfiguracion.setPreferredSize(new java.awt.Dimension(1000, 650));
+
+        jLabel5.setText("Personalización");
+
+        jLabel6.setText("Apariencia");
+
+        btnColorFondo.setText("Color de Fondo");
+        btnColorFondo.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnColorFondoMouseClicked(evt);
+            }
+        });
+
+        btnColorNavBar.setText("Color de NavBar");
+        btnColorNavBar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnColorNavBarMouseClicked(evt);
+            }
+        });
+
+        jLabel7.setText("Fuente");
+
+        jcbFuenteConfiguracion.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+
+        jLabel8.setText("Tamano");
+
+        jcbTamanoConfiguracion.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+
+        jLabel9.setText("Estilo :");
+
+        buttonGroupEstilo.add(rbNormal);
+        rbNormal.setText("Normal");
+
+        buttonGroupEstilo.add(rbNegrita);
+        rbNegrita.setText("Negrita (Bold)");
+
+        buttonGroupEstilo.add(rbItalica);
+        rbItalica.setText("Italics");
+
+        jLabel10.setText("Fondo de Escritorio");
+
+        btnImagenFondo.setText("Seleccionar Imagen");
+
+        btnGuardarConfiguracion.setText("Guardar Cambios");
+
+        btnVolverConfiguracion.setBackground(new java.awt.Color(255, 0, 0));
+        btnVolverConfiguracion.setText("Volver");
+        btnVolverConfiguracion.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnVolverConfiguracionMouseClicked(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jpConfiguracionLayout = new javax.swing.GroupLayout(jpConfiguracion);
+        jpConfiguracion.setLayout(jpConfiguracionLayout);
+        jpConfiguracionLayout.setHorizontalGroup(
+            jpConfiguracionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jpConfiguracionLayout.createSequentialGroup()
+                .addContainerGap(386, Short.MAX_VALUE)
+                .addGroup(jpConfiguracionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jpConfiguracionLayout.createSequentialGroup()
+                        .addGroup(jpConfiguracionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jpConfiguracionLayout.createSequentialGroup()
+                                .addGap(103, 103, 103)
+                                .addComponent(jLabel6))
+                            .addGroup(jpConfiguracionLayout.createSequentialGroup()
+                                .addGap(111, 111, 111)
+                                .addComponent(jLabel7))
+                            .addGroup(jpConfiguracionLayout.createSequentialGroup()
+                                .addGap(109, 109, 109)
+                                .addComponent(jLabel8))
+                            .addGroup(jpConfiguracionLayout.createSequentialGroup()
+                                .addGap(91, 91, 91)
+                                .addGroup(jpConfiguracionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(jcbTamanoConfiguracion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jcbFuenteConfiguracion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addGroup(jpConfiguracionLayout.createSequentialGroup()
+                                .addGap(110, 110, 110)
+                                .addComponent(jLabel9))
+                            .addGroup(jpConfiguracionLayout.createSequentialGroup()
+                                .addComponent(btnColorFondo)
+                                .addGap(28, 28, 28)
+                                .addComponent(btnColorNavBar))
+                            .addGroup(jpConfiguracionLayout.createSequentialGroup()
+                                .addGap(67, 67, 67)
+                                .addComponent(btnImagenFondo))
+                            .addGroup(jpConfiguracionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                .addComponent(btnGuardarConfiguracion, javax.swing.GroupLayout.PREFERRED_SIZE, 252, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jpConfiguracionLayout.createSequentialGroup()
+                                    .addComponent(rbNormal)
+                                    .addGap(18, 18, 18)
+                                    .addGroup(jpConfiguracionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(jLabel10)
+                                        .addGroup(jpConfiguracionLayout.createSequentialGroup()
+                                            .addComponent(rbNegrita)
+                                            .addGap(18, 18, 18)
+                                            .addComponent(rbItalica))))))
+                        .addGap(349, 349, 349))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jpConfiguracionLayout.createSequentialGroup()
+                        .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(297, 297, 297)
+                        .addComponent(btnVolverConfiguracion)
+                        .addGap(60, 60, 60))))
+        );
+        jpConfiguracionLayout.setVerticalGroup(
+            jpConfiguracionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jpConfiguracionLayout.createSequentialGroup()
+                .addGap(9, 9, 9)
+                .addGroup(jpConfiguracionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel5)
+                    .addComponent(btnVolverConfiguracion))
+                .addGap(22, 22, 22)
+                .addComponent(jLabel6)
+                .addGap(29, 29, 29)
+                .addGroup(jpConfiguracionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnColorFondo)
+                    .addComponent(btnColorNavBar))
+                .addGap(18, 18, 18)
+                .addComponent(jLabel7)
+                .addGap(18, 18, 18)
+                .addComponent(jcbFuenteConfiguracion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jLabel8)
+                .addGap(18, 18, 18)
+                .addComponent(jcbTamanoConfiguracion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jLabel9)
+                .addGap(18, 18, 18)
+                .addGroup(jpConfiguracionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(rbNormal)
+                    .addComponent(rbNegrita)
+                    .addComponent(rbItalica))
+                .addGap(18, 18, 18)
+                .addComponent(jLabel10)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btnImagenFondo)
+                .addGap(18, 18, 18)
+                .addComponent(btnGuardarConfiguracion)
+                .addContainerGap(179, Short.MAX_VALUE))
+        );
+
         javax.swing.GroupLayout jpContenedorLayout = new javax.swing.GroupLayout(jpContenedor);
         jpContenedor.setLayout(jpContenedorLayout);
         jpContenedorLayout.setHorizontalGroup(
@@ -853,6 +1023,11 @@ public class ProyectoPrincipal extends javax.swing.JFrame {
                 .addGroup(jpContenedorLayout.createSequentialGroup()
                     .addGap(0, 0, Short.MAX_VALUE)
                     .addComponent(jpUsuarios, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(0, 0, Short.MAX_VALUE)))
+            .addGroup(jpContenedorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jpContenedorLayout.createSequentialGroup()
+                    .addGap(0, 0, Short.MAX_VALUE)
+                    .addComponent(jpConfiguracion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGap(0, 0, Short.MAX_VALUE)))
         );
         jpContenedorLayout.setVerticalGroup(
@@ -877,6 +1052,11 @@ public class ProyectoPrincipal extends javax.swing.JFrame {
                 .addGroup(jpContenedorLayout.createSequentialGroup()
                     .addGap(0, 0, Short.MAX_VALUE)
                     .addComponent(jpUsuarios, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(0, 0, Short.MAX_VALUE)))
+            .addGroup(jpContenedorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jpContenedorLayout.createSequentialGroup()
+                    .addGap(0, 0, Short.MAX_VALUE)
+                    .addComponent(jpConfiguracion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGap(0, 0, Short.MAX_VALUE)))
         );
 
@@ -1924,6 +2104,50 @@ public class ProyectoPrincipal extends javax.swing.JFrame {
                 "Usuario eliminado correctamente");
     }//GEN-LAST:event_btnEliminarUsuarioMouseClicked
 
+    private void btnColorFondoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnColorFondoMouseClicked
+        // TODO add your handling code here:
+        Color color = JColorChooser.showDialog(
+                this,
+                "Seleccione el color de fondo",
+                jpEscritorio.getBackground()
+        );
+
+        if (color != null) {
+            jpEscritorio.setBackground(color);
+        }
+    }//GEN-LAST:event_btnColorFondoMouseClicked
+
+    private void btnColorNavBarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnColorNavBarMouseClicked
+        // TODO add your handling code here:
+        Color color = JColorChooser.showDialog(
+                this,
+                "Seleccione el color del navbar",
+                jpNavbar.getBackground()
+        );
+
+        if (color != null) {
+            jpNavbar.setBackground(color);
+        }
+    }//GEN-LAST:event_btnColorNavBarMouseClicked
+
+    private void btnPersonalizarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnPersonalizarMouseClicked
+        // TODO add your handling code here:
+        jpInicio.setVisible(false);
+        jpConfiguracion.setVisible(true);
+    }//GEN-LAST:event_btnPersonalizarMouseClicked
+
+    private void btnConfiguracionMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnConfiguracionMouseClicked
+        // TODO add your handling code here:
+        jpInicio.setVisible(false);
+        jpConfiguracion.setVisible(true);
+    }//GEN-LAST:event_btnConfiguracionMouseClicked
+
+    private void btnVolverConfiguracionMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnVolverConfiguracionMouseClicked
+        // TODO add your handling code here:
+        jpConfiguracion.setVisible(false);
+        jpInicio.setVisible(true);
+    }//GEN-LAST:event_btnVolverConfiguracionMouseClicked
+
     /**
      * @param args the command line arguments
      */
@@ -2182,7 +2406,9 @@ public class ProyectoPrincipal extends javax.swing.JFrame {
     private javax.swing.JButton btnCancelarUsuario;
     private javax.swing.JButton btnCerrarSesion;
     private javax.swing.JButton btnColorEditor;
+    private javax.swing.JButton btnColorFondo;
     private javax.swing.JButton btnColorFuente;
+    private javax.swing.JButton btnColorNavBar;
     private javax.swing.JButton btnConfiguracion;
     private javax.swing.JButton btnCrearArchivo;
     private javax.swing.JButton btnCrearCarpeta;
@@ -2192,7 +2418,9 @@ public class ProyectoPrincipal extends javax.swing.JFrame {
     private javax.swing.JButton btnEliminarUsuario;
     private javax.swing.JButton btnExplorador;
     private javax.swing.JButton btnGuardar;
+    private javax.swing.JButton btnGuardarConfiguracion;
     private javax.swing.JButton btnGuardarUsuario;
+    private javax.swing.JButton btnImagenFondo;
     private javax.swing.JButton btnIngresar;
     private javax.swing.JButton btnInicio;
     private javax.swing.JButton btnItalics;
@@ -2200,23 +2428,34 @@ public class ProyectoPrincipal extends javax.swing.JFrame {
     private javax.swing.JButton btnPersonalizar;
     private javax.swing.JButton btnUsuarios;
     private javax.swing.JButton btnVolver;
+    private javax.swing.JButton btnVolverConfiguracion;
     private javax.swing.JButton btnVolverExplorador;
     private javax.swing.JButton btnVolverUsuarios;
+    private javax.swing.ButtonGroup buttonGroupEstilo;
     private javax.swing.JComboBox<String> cbTipoUsuario;
     private javax.swing.JDialog dialogUsuario;
     private javax.swing.JMenuItem itemAbrir;
     private javax.swing.JMenuItem itemEliminar;
     private javax.swing.JMenuItem itemRenombrar;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;
+    private javax.swing.JComboBox<String> jcbFuenteConfiguracion;
     private javax.swing.JComboBox<String> jcbFuenteEditor;
+    private javax.swing.JComboBox<String> jcbTamanoConfiguracion;
     private javax.swing.JComboBox<String> jcbTamanoEditor;
+    private javax.swing.JPanel jpConfiguracion;
     private javax.swing.JPanel jpContenedor;
     private javax.swing.JPanel jpEditor;
     private javax.swing.JPanel jpEscritorio;
@@ -2239,6 +2478,9 @@ public class ProyectoPrincipal extends javax.swing.JFrame {
     private javax.swing.JLabel lblUsuarioActual;
     private javax.swing.JProgressBar pbLogin;
     private javax.swing.JPopupMenu popupArchivos;
+    private javax.swing.JRadioButton rbItalica;
+    private javax.swing.JRadioButton rbNegrita;
+    private javax.swing.JRadioButton rbNormal;
     private javax.swing.JTable tblArchivos;
     private javax.swing.JTable tblUsuarios;
     private javax.swing.JTree treeArchivos;
