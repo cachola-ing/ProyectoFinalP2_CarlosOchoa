@@ -1375,6 +1375,16 @@ public class ProyectoPrincipal extends javax.swing.JFrame {
             return;
         }
 
+        nuevoNombre = nuevoNombre.trim();
+
+
+        if (archivoActual.isFile()
+                && archivoActual.getName().endsWith(".txt")
+                && !nuevoNombre.endsWith(".txt")) {
+
+            nuevoNombre = nuevoNombre + ".txt";
+        }
+
         File nuevoArchivo = new File(
                 archivoActual.getParentFile(),
                 nuevoNombre
@@ -1386,7 +1396,47 @@ public class ProyectoPrincipal extends javax.swing.JFrame {
             return;
         }
 
+
+        File formatoActual = null;
+        File formatoNuevo = null;
+
+        if (archivoActual.isFile()
+                && archivoActual.getName().endsWith(".txt")) {
+
+            String nombreActualSinTxt
+                    = archivoActual.getName().substring(
+                            0,
+                            archivoActual.getName().length() - 4
+                    );
+
+            String nombreNuevoSinTxt
+                    = nuevoNombre.substring(
+                            0,
+                            nuevoNombre.length() - 4
+                    );
+
+            formatoActual = new File(
+                    archivoActual.getParentFile(),
+                    nombreActualSinTxt + ".dat"
+            );
+
+            formatoNuevo = new File(
+                    archivoActual.getParentFile(),
+                    nombreNuevoSinTxt + ".dat"
+            );
+        }
+
+// Renombrar el .txt o carpeta
         if (archivoActual.renameTo(nuevoArchivo)) {
+
+            // Si existe su .dat, también renombrarlo
+            if (formatoActual != null && formatoActual.exists()) {
+
+                if (!formatoActual.renameTo(formatoNuevo)) {
+                    JOptionPane.showMessageDialog(this,
+                            "El archivo se renombró, pero su formato no pudo renombrarse");
+                }
+            }
 
             seleccionado.setUserObject(nuevoNombre);
 
@@ -1401,6 +1451,7 @@ public class ProyectoPrincipal extends javax.swing.JFrame {
                     "Renombrado correctamente");
 
         } else {
+
             JOptionPane.showMessageDialog(this,
                     "No se pudo renombrar");
         }
@@ -1569,7 +1620,7 @@ public class ProyectoPrincipal extends javax.swing.JFrame {
 
             File archivoFormato = new File(ruta + ".dat");
 
-            DataOutputStream salida = new DataOutputStream( new FileOutputStream(archivoFormato));
+            DataOutputStream salida = new DataOutputStream(new FileOutputStream(archivoFormato));
 
             Font fuente = txtAreaEditor.getFont();
 
@@ -1587,6 +1638,7 @@ public class ProyectoPrincipal extends javax.swing.JFrame {
                     "No se pudo guardar el formato");
         }
     }
+
     private void cargarFormato(File archivo) {
 
         try {
