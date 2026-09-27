@@ -320,6 +320,7 @@ public class ProyectoPrincipal extends javax.swing.JFrame {
         popupInicio.add(itemUsuariosInicios);
 
         itemCerrarSesionInicio.setText("Logout");
+        itemCerrarSesionInicio.addActionListener(this::itemCerrarSesionInicioActionPerformed);
         popupInicio.add(itemCerrarSesionInicio);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -1211,34 +1212,7 @@ public class ProyectoPrincipal extends javax.swing.JFrame {
 
     private void btnCerrarSesionMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCerrarSesionMouseClicked
         // TODO add your handling code here:
-        pbLogin.setValue(0);
-        lblEstado.setText("Cerrando sesión...");
-
-        jpInicio.setVisible(false);
-        jpLogin.setVisible(true);
-
-        Timer carga = new Timer(50, null);
-
-        carga.addActionListener(e -> {
-            int valor = pbLogin.getValue();
-
-            if (valor < 100) {
-                pbLogin.setValue(valor + 5);
-            } else {
-                carga.stop();
-
-                txtUsuario.setText("");
-                txtContrasena.setText("");
-                lblEstado.setText("Sesión cerrada");
-                usuarioActual = null;
-
-                JOptionPane.showMessageDialog(this, "Sesión cerrada correctamente");
-
-                pbLogin.setValue(0);
-            }
-        });
-
-        carga.start();
+       cerrarSesion();
 
     }//GEN-LAST:event_btnCerrarSesionMouseClicked
 
@@ -2414,6 +2388,11 @@ public class ProyectoPrincipal extends javax.swing.JFrame {
         );
     }//GEN-LAST:event_btnInicioMouseClicked
 
+    private void itemCerrarSesionInicioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itemCerrarSesionInicioActionPerformed
+        // TODO add your handling code here:
+        cerrarSesion();
+    }//GEN-LAST:event_itemCerrarSesionInicioActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -2806,6 +2785,41 @@ public class ProyectoPrincipal extends javax.swing.JFrame {
             ((PanelFondo) jpEscritorio).setRutaImagen("");
         }
     }
+    
+    private void cerrarSesion() {
+
+        pbLogin.setValue(0);
+        lblEstado.setText("Cerrando sesión...");
+
+        jpInicio.setVisible(false);
+        jpLogin.setVisible(true);
+
+        Timer carga = new Timer(50, null);
+
+        carga.addActionListener(e -> {
+            int valor = pbLogin.getValue();
+
+            if (valor < 100) {
+                pbLogin.setValue(valor + 5);
+            } else {
+                carga.stop();
+
+                txtUsuario.setText("");
+                txtContrasena.setText("");
+                lblEstado.setText("Sesión cerrada");
+                usuarioActual = null;
+
+                JOptionPane.showMessageDialog(
+                        this,
+                        "Sesión cerrada correctamente"
+                );
+
+                pbLogin.setValue(0);
+            }
+        });
+
+        carga.start();
+}
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAbrir;
