@@ -2191,8 +2191,22 @@ public class ProyectoPrincipal extends javax.swing.JFrame {
         int tamano = Integer.parseInt(
                 jcbTamanoConfiguracion.getSelectedItem().toString()
         );
+        
+        int estilo = Font.PLAIN;
 
-        Font nuevaFuente = new Font(fuente, Font.PLAIN, tamano);
+        if (rbNegrita.isSelected()) {
+            estilo = Font.BOLD;
+        }
+
+        if (rbItalica.isSelected()) {
+            estilo = Font.ITALIC;
+        }
+
+        if (rbNormal.isSelected()) {
+            estilo = Font.PLAIN;
+        }
+
+        Font nuevaFuente = new Font(fuente, estilo, tamano);
 
 
         lblNombreSistema.setFont(nuevaFuente);
