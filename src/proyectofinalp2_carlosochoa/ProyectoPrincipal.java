@@ -21,6 +21,8 @@ import javax.swing.JColorChooser;
 import java.awt.Color;
 //fuente
 import java.awt.Font;
+import java.io.DataOutputStream;
+import java.io.FileOutputStream;
 //modelos
 import javax.swing.tree.DefaultMutableTreeNode;
 import javax.swing.tree.DefaultTreeModel;
@@ -859,6 +861,7 @@ public class ProyectoPrincipal extends javax.swing.JFrame {
 
                 escritor.write(txtAreaEditor.getText());
                 escritor.close();
+                guardarFormato(archivoAbierto);
 
                 JOptionPane.showMessageDialog(this,
                         "Cambios guardados correctamente");
@@ -898,6 +901,7 @@ public class ProyectoPrincipal extends javax.swing.JFrame {
                     escritor.close();
 
                     archivoAbierto = archivo;
+                    guardarFormato(archivoAbierto);
 
                     JOptionPane.showMessageDialog(this,
                             "Archivo guardado correctamente");
@@ -1048,7 +1052,7 @@ public class ProyectoPrincipal extends javax.swing.JFrame {
             DefaultTreeModel modelo = (DefaultTreeModel) treeArchivos.getModel();
 
             modelo.reload(seleccionado);
-            
+
             actualizarTabla(carpetaSeleccionada);
 
             JOptionPane.showMessageDialog(this, "Carpeta creada correctamente");
@@ -1120,7 +1124,7 @@ public class ProyectoPrincipal extends javax.swing.JFrame {
                         = (DefaultTreeModel) treeArchivos.getModel();
 
                 modelo.reload(seleccionado);
-                
+
                 actualizarTabla(carpetaSeleccionada);
 
                 JOptionPane.showMessageDialog(this,
@@ -1213,7 +1217,7 @@ public class ProyectoPrincipal extends javax.swing.JFrame {
         Object[] partesRuta = rutaSeleccionada.getPath();
 
         File archivoSeleccionado = carpetaPrincipal;
-        
+
         File carpetaPadre = archivoSeleccionado.getParentFile();
 
         for (int i = 1; i < partesRuta.length; i++) {
@@ -1504,43 +1508,74 @@ public class ProyectoPrincipal extends javax.swing.JFrame {
             }
         }
     }
+
     private void actualizarTabla(File carpeta) {
 
-    DefaultTableModel modelo =
-            (DefaultTableModel) tblArchivos.getModel();
+        DefaultTableModel modelo
+                = (DefaultTableModel) tblArchivos.getModel();
 
-    modelo.setRowCount(0);
+        modelo.setRowCount(0);
 
-    if (carpeta == null || !carpeta.isDirectory()) {
-        return;
-    }
-
-    File[] archivos = carpeta.listFiles();
-
-    if (archivos == null) {
-        return;
-    }
-
-    for (int i = 0; i < archivos.length; i++) {
-
-        String tipo;
-
-        if (archivos[i].isDirectory()) {
-            tipo = "Carpeta";
-        } else {
-            tipo = "Archivo";
+        if (carpeta == null || !carpeta.isDirectory()) {
+            return;
         }
 
-        Object[] fila = {
-            archivos[i].getName(),
-            tipo,
-            archivos[i].length() + " bytes",
-            archivos[i].getAbsolutePath()
-        };
+        File[] archivos = carpeta.listFiles();
 
-        modelo.addRow(fila);
+        if (archivos == null) {
+            return;
+        }
+
+        for (int i = 0; i < archivos.length; i++) {
+
+            String tipo;
+
+            if (archivos[i].isDirectory()) {
+                tipo = "Carpeta";
+            } else {
+                tipo = "Archivo";
+            }
+
+            Object[] fila = {
+                archivos[i].getName(),
+                tipo,
+                archivos[i].length() + " bytes",
+                archivos[i].getAbsolutePath()
+            };
+
+            modelo.addRow(fila);
+        }
     }
-}
+
+    private void guardarFormato(File archivo) {
+
+        try {
+            String ruta = archivo.getAbsolutePath();
+
+            if (ruta.endsWith(".txt")) {
+                ruta = ruta.substring(0, ruta.length() - 4);
+            }
+
+            File archivoFormato = new File(ruta + ".dat");
+
+            DataOutputStream salida = new DataOutputStream( new FileOutputStream(archivoFormato));
+
+            Font fuente = txtAreaEditor.getFont();
+
+            salida.writeUTF(fuente.getName());
+            salida.writeInt(fuente.getSize());
+            salida.writeInt(fuente.getStyle());
+
+            salida.writeInt(txtAreaEditor.getForeground().getRGB());
+            salida.writeInt(txtAreaEditor.getBackground().getRGB());
+
+            salida.close();
+
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this,
+                    "No se pudo guardar el formato");
+        }
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAbrir;
