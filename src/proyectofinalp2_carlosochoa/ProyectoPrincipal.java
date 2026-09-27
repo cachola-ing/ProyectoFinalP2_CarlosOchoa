@@ -45,6 +45,7 @@ public class ProyectoPrincipal extends javax.swing.JFrame {
     Usuario[] usuarios = new Usuario[20];
     int cantidadUsuarios = 0;
     int usuarioEditando = -1;
+    Usuario usuarioActual = null;
 
     /**
      * Creates new form ProyectoPrincipal
@@ -944,6 +945,8 @@ public class ProyectoPrincipal extends javax.swing.JFrame {
 
                 lblEstado.setText("Bienvenido " + usuarioIngresado.getNombre());
                 lblUsuarioActual.setText(usuarioIngresado.getNombre());
+                
+                usuarioActual = usuarioIngresado;
 
                 JOptionPane.showMessageDialog(this,
                         "Bienvenido al sistema " + usuarioIngresado.getNombre());
