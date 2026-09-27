@@ -125,6 +125,12 @@ public class ProyectoPrincipal extends javax.swing.JFrame {
         btnGuardarUsuario = new javax.swing.JButton();
         btnCancelarUsuario = new javax.swing.JButton();
         buttonGroupEstilo = new javax.swing.ButtonGroup();
+        popupInicio = new javax.swing.JPopupMenu();
+        itemEditorInicio = new javax.swing.JMenuItem();
+        itemExploradorInicio = new javax.swing.JMenuItem();
+        itemConfiguracionInicio = new javax.swing.JMenuItem();
+        itemUsuariosInicios = new javax.swing.JMenuItem();
+        itemCerrarSesionInicio = new javax.swing.JMenuItem();
         jpContenedor = new javax.swing.JPanel();
         jpLogin = new javax.swing.JPanel();
         lblTitulo = new javax.swing.JLabel();
@@ -297,6 +303,25 @@ public class ProyectoPrincipal extends javax.swing.JFrame {
                 .addContainerGap(116, Short.MAX_VALUE))
         );
 
+        itemEditorInicio.setText("Editor");
+        itemEditorInicio.addActionListener(this::itemEditorInicioActionPerformed);
+        popupInicio.add(itemEditorInicio);
+
+        itemExploradorInicio.setText("Explorador\n");
+        itemExploradorInicio.addActionListener(this::itemExploradorInicioActionPerformed);
+        popupInicio.add(itemExploradorInicio);
+
+        itemConfiguracionInicio.setText("Configuracion");
+        itemConfiguracionInicio.addActionListener(this::itemConfiguracionInicioActionPerformed);
+        popupInicio.add(itemConfiguracionInicio);
+
+        itemUsuariosInicios.setText("Usuarios (Admin.)\n");
+        itemUsuariosInicios.addActionListener(this::itemUsuariosIniciosActionPerformed);
+        popupInicio.add(itemUsuariosInicios);
+
+        itemCerrarSesionInicio.setText("Logout");
+        popupInicio.add(itemCerrarSesionInicio);
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jpContenedor.setBackground(new java.awt.Color(153, 204, 255));
@@ -391,6 +416,11 @@ public class ProyectoPrincipal extends javax.swing.JFrame {
         lblNombreSistema.setText("CacholaOS");
 
         btnInicio.setText("Inicio");
+        btnInicio.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnInicioMouseClicked(evt);
+            }
+        });
 
         btnUsuarios.setText("Usuarios");
         btnUsuarios.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -1076,7 +1106,7 @@ public class ProyectoPrincipal extends javax.swing.JFrame {
             jpContenedorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jpContenedorLayout.createSequentialGroup()
                 .addComponent(jpLogin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 6, Short.MAX_VALUE))
+                .addGap(0, 0, Short.MAX_VALUE))
             .addGroup(jpContenedorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(jpContenedorLayout.createSequentialGroup()
                     .addComponent(jpInicio, javax.swing.GroupLayout.PREFERRED_SIZE, 656, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -1175,6 +1205,8 @@ public class ProyectoPrincipal extends javax.swing.JFrame {
         });
 
         carga.start();
+        
+        
     }//GEN-LAST:event_btnIngresarMouseClicked
 
     private void btnCerrarSesionMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCerrarSesionMouseClicked
@@ -2335,6 +2367,53 @@ public class ProyectoPrincipal extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_btnImagenFondoMouseClicked
 
+    private void itemEditorInicioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itemEditorInicioActionPerformed
+        // TODO add your handling code here:
+        jpInicio.setVisible(false);
+        jpEditor.setVisible(true);
+    }//GEN-LAST:event_itemEditorInicioActionPerformed
+
+    private void itemExploradorInicioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itemExploradorInicioActionPerformed
+        // TODO add your handling code here:
+        jpInicio.setVisible(false);
+        jpExplorador.setVisible(true);
+    }//GEN-LAST:event_itemExploradorInicioActionPerformed
+
+    private void itemConfiguracionInicioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itemConfiguracionInicioActionPerformed
+        // TODO add your handling code here:
+        jpInicio.setVisible(false);
+        jpConfiguracion.setVisible(true);
+    }//GEN-LAST:event_itemConfiguracionInicioActionPerformed
+
+    private void itemUsuariosIniciosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itemUsuariosIniciosActionPerformed
+        // TODO add your handling code here:
+        if (usuarioActual == null) {
+            return;
+        }
+
+        if (!usuarioActual.getTipo().equals("Administrador")) {
+            JOptionPane.showMessageDialog(
+                    this,
+                    "Solo los administradores pueden administrar usuarios"
+            );
+            return;
+        }
+
+        actualizarTablaUsuarios();
+
+        jpInicio.setVisible(false);
+        jpUsuarios.setVisible(true);
+    }//GEN-LAST:event_itemUsuariosIniciosActionPerformed
+
+    private void btnInicioMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnInicioMouseClicked
+        // TODO add your handling code here:
+        popupInicio.show(
+                btnInicio,
+                0,
+                btnInicio.getHeight()
+        );
+    }//GEN-LAST:event_btnInicioMouseClicked
+
     /**
      * @param args the command line arguments
      */
@@ -2766,8 +2845,13 @@ public class ProyectoPrincipal extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> cbTipoUsuario;
     private javax.swing.JDialog dialogUsuario;
     private javax.swing.JMenuItem itemAbrir;
+    private javax.swing.JMenuItem itemCerrarSesionInicio;
+    private javax.swing.JMenuItem itemConfiguracionInicio;
+    private javax.swing.JMenuItem itemEditorInicio;
     private javax.swing.JMenuItem itemEliminar;
+    private javax.swing.JMenuItem itemExploradorInicio;
     private javax.swing.JMenuItem itemRenombrar;
+    private javax.swing.JMenuItem itemUsuariosInicios;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel2;
@@ -2809,6 +2893,7 @@ public class ProyectoPrincipal extends javax.swing.JFrame {
     private javax.swing.JLabel lblUsuarioActual;
     private javax.swing.JProgressBar pbLogin;
     private javax.swing.JPopupMenu popupArchivos;
+    private javax.swing.JPopupMenu popupInicio;
     private javax.swing.JRadioButton rbItalica;
     private javax.swing.JRadioButton rbNegrita;
     private javax.swing.JRadioButton rbNormal;
