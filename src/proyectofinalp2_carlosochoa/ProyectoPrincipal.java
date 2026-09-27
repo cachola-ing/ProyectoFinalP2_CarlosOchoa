@@ -42,6 +42,7 @@ public class ProyectoPrincipal extends javax.swing.JFrame {
     int cantidadUsuarios = 0;
     int usuarioEditando = -1;
     Usuario usuarioActual = null;
+    Configuracion configuracionActual = new Configuracion();
 
     /**
      * Creates new form ProyectoPrincipal
@@ -1158,6 +1159,7 @@ public class ProyectoPrincipal extends javax.swing.JFrame {
                 lblUsuarioActual.setText(usuarioIngresado.getNombre());
                 
                 usuarioActual = usuarioIngresado;
+                cargarConfiguracion();
 
                 JOptionPane.showMessageDialog(this,
                         "Bienvenido al sistema " + usuarioIngresado.getNombre());
@@ -2150,6 +2152,7 @@ public class ProyectoPrincipal extends javax.swing.JFrame {
 
         if (color != null) {
             jpEscritorio.setBackground(color);
+            configuracionActual.setColorFondo(color);
         }
     }//GEN-LAST:event_btnColorFondoMouseClicked
 
@@ -2163,6 +2166,7 @@ public class ProyectoPrincipal extends javax.swing.JFrame {
 
         if (color != null) {
             jpNavbar.setBackground(color);
+            configuracionActual.setColorNavbar(color);
         }
     }//GEN-LAST:event_btnColorNavBarMouseClicked
 
@@ -2205,6 +2209,10 @@ public class ProyectoPrincipal extends javax.swing.JFrame {
         if (rbNormal.isSelected()) {
             estilo = Font.PLAIN;
         }
+        
+        configuracionActual.setFuente(fuente);
+        configuracionActual.setTamanoFuente(tamano);
+        configuracionActual.setEstiloFuente(estilo);
 
         Font nuevaFuente = new Font(fuente, estilo, tamano);
 
@@ -2224,6 +2232,13 @@ public class ProyectoPrincipal extends javax.swing.JFrame {
         btnEditor.setFont(nuevaFuente);
         btnExplorador.setFont(nuevaFuente);
         btnConfiguracion.setFont(nuevaFuente);
+        
+        guardarConfiguracion();
+
+        JOptionPane.showMessageDialog(
+                this,
+                "Configuración guardada correctamente"
+        );
     }//GEN-LAST:event_btnGuardarConfiguracionMouseClicked
 
     private void btnColorTextoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnColorTextoMouseClicked
@@ -2252,6 +2267,8 @@ public class ProyectoPrincipal extends javax.swing.JFrame {
             btnEditor.setForeground(color);
             btnExplorador.setForeground(color);
             btnConfiguracion.setForeground(color);
+            
+            configuracionActual.setColorTexto(color);
         }
     }//GEN-LAST:event_btnColorTextoMouseClicked
 
@@ -2275,6 +2292,8 @@ public class ProyectoPrincipal extends javax.swing.JFrame {
             btnEditor.setBackground(color);
             btnExplorador.setBackground(color);
             btnConfiguracion.setBackground(color);
+            
+            configuracionActual.setColorBotones(color);
         }
     }//GEN-LAST:event_btnColorBotonesMouseClicked
 
@@ -2527,6 +2546,136 @@ public class ProyectoPrincipal extends javax.swing.JFrame {
                     "No se pudieron cargar los usuarios");
         }
         
+    }
+    
+    private void guardarConfiguracion() {
+
+        if (usuarioActual == null) {
+            return;
+        }
+
+        File carpeta = new File("ConfiguracionesCacholaOS");
+
+        if (!carpeta.exists()) {
+            carpeta.mkdir();
+        }
+
+        File archivo = new File(
+                carpeta,
+                usuarioActual.getNombre() + ".dat"
+        );
+
+        try {
+            ObjectOutputStream salida
+                    = new ObjectOutputStream(new FileOutputStream(archivo));
+
+            salida.writeObject(configuracionActual);
+            salida.close();
+
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this,
+                    "Error al guardar la configuración");
+        }
+    }
+    
+    private void cargarConfiguracion() {
+
+        if (usuarioActual == null) {
+            return;
+        }
+
+        File carpeta = new File("ConfiguracionesCacholaOS");
+
+        File archivo = new File(
+                carpeta,
+                usuarioActual.getNombre() + ".dat"
+        );
+
+        if (!archivo.exists()) {
+            configuracionActual = new Configuracion();
+            aplicarConfiguracion();
+            return;
+        }
+
+        try {
+            ObjectInputStream entrada
+                    = new ObjectInputStream(new FileInputStream(archivo));
+
+            configuracionActual
+                    = (Configuracion) entrada.readObject();
+
+            entrada.close();
+
+            aplicarConfiguracion();
+
+        } catch (Exception e) {
+            configuracionActual = new Configuracion();
+            aplicarConfiguracion();
+        }
+    }
+    
+    private void aplicarConfiguracion() {
+
+        
+        jpEscritorio.setBackground(
+                configuracionActual.getColorFondo()
+        );
+
+        jpNavbar.setBackground(
+                configuracionActual.getColorNavbar()
+        );
+
+        Color colorTexto
+                = configuracionActual.getColorTexto();
+
+        Color colorBotones
+                = configuracionActual.getColorBotones();
+
+       
+        lblNombreSistema.setForeground(colorTexto);
+        lblUsuarioActual.setForeground(colorTexto);
+        lblHora.setForeground(colorTexto);
+        lblFecha.setForeground(colorTexto);
+
+        btnInicio.setForeground(colorTexto);
+        btnUsuarios.setForeground(colorTexto);
+        btnPersonalizar.setForeground(colorTexto);
+        btnCerrarSesion.setForeground(colorTexto);
+
+        btnEditor.setForeground(colorTexto);
+        btnExplorador.setForeground(colorTexto);
+        btnConfiguracion.setForeground(colorTexto);
+
+        
+        btnInicio.setBackground(colorBotones);
+        btnUsuarios.setBackground(colorBotones);
+        btnPersonalizar.setBackground(colorBotones);
+        btnCerrarSesion.setBackground(colorBotones);
+
+        btnEditor.setBackground(colorBotones);
+        btnExplorador.setBackground(colorBotones);
+        btnConfiguracion.setBackground(colorBotones);
+
+       
+        Font nuevaFuente = new Font(
+                configuracionActual.getFuente(),
+                configuracionActual.getEstiloFuente(),
+                configuracionActual.getTamanoFuente()
+        );
+
+        lblNombreSistema.setFont(nuevaFuente);
+        lblUsuarioActual.setFont(nuevaFuente);
+        lblHora.setFont(nuevaFuente);
+        lblFecha.setFont(nuevaFuente);
+
+        btnInicio.setFont(nuevaFuente);
+        btnUsuarios.setFont(nuevaFuente);
+        btnPersonalizar.setFont(nuevaFuente);
+        btnCerrarSesion.setFont(nuevaFuente);
+
+        btnEditor.setFont(nuevaFuente);
+        btnExplorador.setFont(nuevaFuente);
+        btnConfiguracion.setFont(nuevaFuente);
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

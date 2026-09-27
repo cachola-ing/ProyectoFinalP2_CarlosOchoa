@@ -5,6 +5,7 @@
 package proyectofinalp2_carlosochoa;
 
 import java.awt.Color;
+import java.awt.Font;
 import java.io.Serializable;
 
 /**
@@ -13,17 +14,25 @@ import java.io.Serializable;
  */
 public class Configuracion implements Serializable {
     
+    private static final long serialVersionUID = 1L;
+    
     Color colorFondo;
     Color colorNavbar;
+    Color colorTexto;
+    Color colorBotones;
     String fuente;
     int tamanoFuente;
+    int estiloFuente;
     String imagenFondo;
 
     public Configuracion() {
         colorFondo = Color.WHITE;
         colorNavbar = Color.DARK_GRAY;
+        colorTexto = Color.BLACK;
+        colorBotones = Color.WHITE;
         fuente = "Arial";
         tamanoFuente = 14;
+        estiloFuente = Font.PLAIN;
         imagenFondo = "";
     }
 
@@ -43,6 +52,22 @@ public class Configuracion implements Serializable {
         this.colorNavbar = colorNavbar;
     }
 
+    public Color getColorTexto() {
+        return colorTexto;
+    }
+
+    public void setColorTexto(Color colorTexto) {
+        this.colorTexto = colorTexto;
+    }
+
+    public Color getColorBotones() {
+        return colorBotones;
+    }
+
+    public void setColorBotones(Color colorBotones) {
+        this.colorBotones = colorBotones;
+    }
+
     public String getFuente() {
         return fuente;
     }
@@ -59,6 +84,14 @@ public class Configuracion implements Serializable {
         this.tamanoFuente = tamanoFuente;
     }
 
+    public int getEstiloFuente() {
+        return estiloFuente;
+    }
+
+    public void setEstiloFuente(int estiloFuente) {
+        this.estiloFuente = estiloFuente;
+    }
+
     public String getImagenFondo() {
         return imagenFondo;
     }
@@ -67,5 +100,9 @@ public class Configuracion implements Serializable {
         this.imagenFondo = imagenFondo;
     }
     
-         
+    
+    
+    
+
+    
 }
