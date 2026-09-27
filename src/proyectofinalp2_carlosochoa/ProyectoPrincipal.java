@@ -1502,6 +1502,10 @@ public class ProyectoPrincipal extends javax.swing.JFrame {
 
         for (int i = 0; i < archivos.length; i++) {
 
+            if (archivos[i].getName().endsWith(".dat")) {
+                continue;
+            }
+
             DefaultMutableTreeNode nuevoNodo
                     = new DefaultMutableTreeNode(archivos[i].getName());
 
@@ -1531,6 +1535,9 @@ public class ProyectoPrincipal extends javax.swing.JFrame {
         }
 
         for (int i = 0; i < archivos.length; i++) {
+            if (archivos[i].getName().endsWith(".dat")) {
+                continue;
+            }
 
             String tipo;
 
