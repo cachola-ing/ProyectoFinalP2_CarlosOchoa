@@ -143,7 +143,7 @@ public class ProyectoPrincipal extends javax.swing.JFrame {
         btnPersonalizar = new javax.swing.JButton();
         lblUsuarioActual = new javax.swing.JLabel();
         btnCerrarSesion = new javax.swing.JButton();
-        jpEscritorio = new javax.swing.JPanel();
+        jpEscritorio = new PanelFondo();
         btnEditor = new javax.swing.JButton();
         btnExplorador = new javax.swing.JButton();
         btnConfiguracion = new javax.swing.JButton();
@@ -906,6 +906,11 @@ public class ProyectoPrincipal extends javax.swing.JFrame {
         jLabel10.setText("Fondo de Escritorio");
 
         btnImagenFondo.setText("Seleccionar Imagen");
+        btnImagenFondo.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnImagenFondoMouseClicked(evt);
+            }
+        });
 
         btnGuardarConfiguracion.setText("Guardar Cambios");
         btnGuardarConfiguracion.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -2297,6 +2302,39 @@ public class ProyectoPrincipal extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_btnColorBotonesMouseClicked
 
+    private void btnImagenFondoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnImagenFondoMouseClicked
+        // TODO add your handling code here:
+        JFileChooser selector = new JFileChooser();
+
+        FileNameExtensionFilter filtro
+                = new FileNameExtensionFilter(
+                        "Imágenes",
+                        "jpg", "jpeg", "png"
+                );
+
+        selector.setFileFilter(filtro);
+
+        int opcion = selector.showOpenDialog(this);
+
+        if (opcion == JFileChooser.APPROVE_OPTION) {
+
+            File imagen = selector.getSelectedFile();
+
+            configuracionActual.setImagenFondo(
+                    imagen.getAbsolutePath()
+            );
+            
+            ((PanelFondo) jpEscritorio).setRutaImagen(
+                    imagen.getAbsolutePath()
+            );
+
+            JOptionPane.showMessageDialog(
+                    this,
+                    "Imagen de fondo seleccionada"
+            );
+        }
+    }//GEN-LAST:event_btnImagenFondoMouseClicked
+
     /**
      * @param args the command line arguments
      */
@@ -2676,6 +2714,18 @@ public class ProyectoPrincipal extends javax.swing.JFrame {
         btnEditor.setFont(nuevaFuente);
         btnExplorador.setFont(nuevaFuente);
         btnConfiguracion.setFont(nuevaFuente);
+        
+        if (configuracionActual.getImagenFondo() != null
+                && !configuracionActual.getImagenFondo().isEmpty()) {
+
+            ((PanelFondo) jpEscritorio).setRutaImagen(
+                    configuracionActual.getImagenFondo()
+            );
+
+        } else {
+
+            ((PanelFondo) jpEscritorio).setRutaImagen("");
+        }
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

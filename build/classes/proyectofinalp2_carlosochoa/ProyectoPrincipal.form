@@ -574,6 +574,9 @@
                   <Dimension value="[1000, 575]"/>
                 </Property>
               </Properties>
+              <AuxValues>
+                <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new PanelFondo()"/>
+              </AuxValues>
 
               <Layout>
                 <DimensionLayout dim="0">
@@ -1443,6 +1446,9 @@
               <Properties>
                 <Property name="text" type="java.lang.String" value="Seleccionar Imagen"/>
               </Properties>
+              <Events>
+                <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="btnImagenFondoMouseClicked"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JButton" name="btnGuardarConfiguracion">
               <Properties>
