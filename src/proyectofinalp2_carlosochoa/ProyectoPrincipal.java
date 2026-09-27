@@ -21,7 +21,9 @@ import javax.swing.JColorChooser;
 import java.awt.Color;
 //fuente
 import java.awt.Font;
+import java.io.DataInputStream;
 import java.io.DataOutputStream;
+import java.io.FileInputStream;
 import java.io.FileOutputStream;
 //modelos
 import javax.swing.tree.DefaultMutableTreeNode;
@@ -843,6 +845,7 @@ public class ProyectoPrincipal extends javax.swing.JFrame {
                 }
 
                 lector.close();
+                cargarFormato(archivo);
                 archivoAbierto = archivo;
 
             } catch (Exception e) {
@@ -1321,6 +1324,7 @@ public class ProyectoPrincipal extends javax.swing.JFrame {
             lector.close();
 
             archivoAbierto = archivo;
+            cargarFormato(archivo);
 
             jpExplorador.setVisible(false);
             jpEditor.setVisible(true);
@@ -1574,6 +1578,54 @@ public class ProyectoPrincipal extends javax.swing.JFrame {
         } catch (Exception e) {
             JOptionPane.showMessageDialog(this,
                     "No se pudo guardar el formato");
+        }
+    }
+    private void cargarFormato(File archivo) {
+
+        try {
+            String ruta = archivo.getAbsolutePath();
+
+            if (ruta.endsWith(".txt")) {
+                ruta = ruta.substring(0, ruta.length() - 4);
+            }
+
+            File archivoFormato = new File(ruta + ".dat");
+
+            if (!archivoFormato.exists()) {
+                return;
+            }
+
+            DataInputStream entrada = new DataInputStream(new FileInputStream(archivoFormato));
+
+            String nombreFuente = entrada.readUTF();
+            int tamanoFuente = entrada.readInt();
+            int estiloFuente = entrada.readInt();
+
+            int colorFuente = entrada.readInt();
+            int colorFondo = entrada.readInt();
+
+            entrada.close();
+
+            txtAreaEditor.setFont(
+                    new Font(nombreFuente, estiloFuente, tamanoFuente)
+            );
+
+            txtAreaEditor.setForeground(
+                    new Color(colorFuente)
+            );
+
+            txtAreaEditor.setBackground(
+                    new Color(colorFondo)
+            );
+
+            jcbFuenteEditor.setSelectedItem(nombreFuente);
+            jcbTamanoEditor.setSelectedItem(
+                    String.valueOf(tamanoFuente)
+            );
+
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this,
+                    "No se pudo cargar el formato");
         }
     }
 
