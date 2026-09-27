@@ -1894,6 +1894,12 @@ public class ProyectoPrincipal extends javax.swing.JFrame {
                     "Seleccione un usuario");
             return;
         }
+        
+        if (usuarios[fila] == usuarioActual) {
+            JOptionPane.showMessageDialog(this,
+                    "No puede eliminar el usuario que está actualmente en sesión");
+            return;
+        }
 
         int respuesta = JOptionPane.showConfirmDialog(
                 this,
