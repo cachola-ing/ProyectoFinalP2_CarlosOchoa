@@ -980,6 +980,7 @@ public class ProyectoPrincipal extends javax.swing.JFrame {
                 txtUsuario.setText("");
                 txtContrasena.setText("");
                 lblEstado.setText("Sesión cerrada");
+                usuarioActual = null;
 
                 JOptionPane.showMessageDialog(this, "Sesión cerrada correctamente");
 
