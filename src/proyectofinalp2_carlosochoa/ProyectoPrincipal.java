@@ -1750,6 +1750,16 @@ public class ProyectoPrincipal extends javax.swing.JFrame {
 
     private void btnUsuariosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnUsuariosMouseClicked
         // TODO add your handling code here:
+        if (usuarioActual == null) {
+            return;
+        }
+
+        if (!usuarioActual.getTipo().equals("Administrador")) {
+            JOptionPane.showMessageDialog(this,
+                    "Solo los administradores pueden administrar usuarios");
+            return;
+        }
+
         actualizarTablaUsuarios();
 
         jpInicio.setVisible(false);
