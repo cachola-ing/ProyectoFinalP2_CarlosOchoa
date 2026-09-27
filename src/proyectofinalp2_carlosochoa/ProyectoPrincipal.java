@@ -52,8 +52,7 @@ public class ProyectoPrincipal extends javax.swing.JFrame {
         setLocationRelativeTo(null);
         setResizable(false);
 
-        usuarios[0] = new Usuario("admin", "1234", "Administrador");
-        cantidadUsuarios = 1;
+        cargarUsuarios();
 
         pbLogin.setValue(0);
         pbLogin.setStringPainted(true);
@@ -1818,7 +1817,8 @@ public class ProyectoPrincipal extends javax.swing.JFrame {
             usuarios[usuarioEditando].setNombre(nombre);
             usuarios[usuarioEditando].setContrasena(contrasena);
             usuarios[usuarioEditando].setTipo(tipo);
-
+            
+            guardarUsuarios();
             actualizarTablaUsuarios();
 
             dialogUsuario.setVisible(false);
@@ -1839,7 +1839,8 @@ public class ProyectoPrincipal extends javax.swing.JFrame {
                     = new Usuario(nombre, contrasena, tipo);
 
             cantidadUsuarios++;
-
+            
+            guardarUsuarios();
             actualizarTablaUsuarios();
 
             dialogUsuario.setVisible(false);
@@ -1915,7 +1916,8 @@ public class ProyectoPrincipal extends javax.swing.JFrame {
 
         usuarios[cantidadUsuarios - 1] = null;
         cantidadUsuarios--;
-
+        
+        guardarUsuarios();
         actualizarTablaUsuarios();
 
         JOptionPane.showMessageDialog(this,
