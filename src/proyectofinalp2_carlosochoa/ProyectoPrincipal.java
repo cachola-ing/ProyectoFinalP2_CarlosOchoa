@@ -21,6 +21,7 @@ import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
+import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import javax.swing.tree.DefaultMutableTreeNode;
 import javax.swing.tree.DefaultTreeModel;
@@ -2132,6 +2133,44 @@ public class ProyectoPrincipal extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this,
                     "No se pudieron guardar los usuarios");
         }
+    }
+    
+    private void cargarUsuarios() {
+
+    File archivoUsuarios = new File("usuarios.dat");
+
+    if (!archivoUsuarios.exists()) {
+
+            usuarios[0]
+                    = new Usuario("admin", "1234", "Administrador");
+
+            cantidadUsuarios = 1;
+
+            guardarUsuarios();
+
+            return;
+        }
+
+        try {
+
+            ObjectInputStream entrada
+                    = new ObjectInputStream(
+                            new FileInputStream(archivoUsuarios)
+                    );
+
+            cantidadUsuarios = entrada.readInt();
+
+            for (int i = 0; i < cantidadUsuarios; i++) {
+                usuarios[i] = (Usuario) entrada.readObject();
+            }
+
+            entrada.close();
+
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this,
+                    "No se pudieron cargar los usuarios");
+        }
+        
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
