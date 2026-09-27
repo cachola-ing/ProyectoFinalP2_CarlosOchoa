@@ -17,12 +17,14 @@ import java.io.FileWriter;
 import javax.swing.JColorChooser;
 import java.awt.Color;
 import java.awt.Font;
+import java.awt.Image;
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
+import javax.swing.ImageIcon;
 import javax.swing.tree.DefaultMutableTreeNode;
 import javax.swing.tree.DefaultTreeModel;
 import javax.swing.table.DefaultTableModel;
@@ -49,6 +51,26 @@ public class ProyectoPrincipal extends javax.swing.JFrame {
      */
     public ProyectoPrincipal() {
         initComponents();
+        ImageIcon icono = (ImageIcon) lblImagen.getIcon();
+
+        Image imagen = icono.getImage().getScaledInstance(
+                lblImagen.getWidth(),
+                lblImagen.getHeight(),
+                Image.SCALE_SMOOTH
+        );
+
+        lblImagen.setIcon(new ImageIcon(imagen));
+        
+             ImageIcon iconoHomelander = (ImageIcon) lblHomeLander.getIcon();
+
+        Image imagenHomelander = iconoHomelander.getImage().getScaledInstance(
+                lblHomeLander.getWidth(),
+                lblHomeLander.getHeight(),
+                Image.SCALE_SMOOTH
+        );
+
+        lblHomeLander.setIcon(new ImageIcon(imagenHomelander));
+        
         setSize(1000, 650);
         setLocationRelativeTo(null);
         setResizable(false);
@@ -100,6 +122,8 @@ public class ProyectoPrincipal extends javax.swing.JFrame {
         new File(carpetaPrincipal, "Documentos").mkdir();
         new File(carpetaPrincipal, "Tareas").mkdir();
         new File(carpetaPrincipal, "Otros").mkdir();
+        
+        
     }
 
     /**
@@ -126,11 +150,11 @@ public class ProyectoPrincipal extends javax.swing.JFrame {
         btnCancelarUsuario = new javax.swing.JButton();
         buttonGroupEstilo = new javax.swing.ButtonGroup();
         popupInicio = new javax.swing.JPopupMenu();
-        itemEditorInicio = new javax.swing.JMenuItem();
-        itemExploradorInicio = new javax.swing.JMenuItem();
-        itemConfiguracionInicio = new javax.swing.JMenuItem();
-        itemUsuariosInicios = new javax.swing.JMenuItem();
-        itemCerrarSesionInicio = new javax.swing.JMenuItem();
+        jMenuItem1 = new javax.swing.JMenuItem();
+        jMenuItem2 = new javax.swing.JMenuItem();
+        jMenuItem3 = new javax.swing.JMenuItem();
+        jMenuItem4 = new javax.swing.JMenuItem();
+        jMenuItem5 = new javax.swing.JMenuItem();
         jpContenedor = new javax.swing.JPanel();
         jpLogin = new javax.swing.JPanel();
         lblTitulo = new javax.swing.JLabel();
@@ -141,6 +165,8 @@ public class ProyectoPrincipal extends javax.swing.JFrame {
         btnIngresar = new javax.swing.JButton();
         pbLogin = new javax.swing.JProgressBar();
         lblEstado = new javax.swing.JLabel();
+        lblImagen = new javax.swing.JLabel();
+        lblHomeLander = new javax.swing.JLabel();
         jpInicio = new javax.swing.JPanel();
         jpNavbar = new javax.swing.JPanel();
         lblNombreSistema = new javax.swing.JLabel();
@@ -208,6 +234,7 @@ public class ProyectoPrincipal extends javax.swing.JFrame {
         btnVolverConfiguracion = new javax.swing.JButton();
         btnColorTexto = new javax.swing.JButton();
         btnColorBotones = new javax.swing.JButton();
+        btnQuitarImagen = new javax.swing.JButton();
 
         itemAbrir.setText("Abrir");
         itemAbrir.addActionListener(this::itemAbrirActionPerformed);
@@ -303,109 +330,136 @@ public class ProyectoPrincipal extends javax.swing.JFrame {
                 .addContainerGap(116, Short.MAX_VALUE))
         );
 
-        itemEditorInicio.setText("Editor");
-        itemEditorInicio.addActionListener(this::itemEditorInicioActionPerformed);
-        popupInicio.add(itemEditorInicio);
+        jMenuItem1.setText("jMenuItem1");
+        popupInicio.add(jMenuItem1);
 
-        itemExploradorInicio.setText("Explorador\n");
-        itemExploradorInicio.addActionListener(this::itemExploradorInicioActionPerformed);
-        popupInicio.add(itemExploradorInicio);
+        jMenuItem2.setText("jMenuItem2");
+        popupInicio.add(jMenuItem2);
 
-        itemConfiguracionInicio.setText("Configuracion");
-        itemConfiguracionInicio.addActionListener(this::itemConfiguracionInicioActionPerformed);
-        popupInicio.add(itemConfiguracionInicio);
+        jMenuItem3.setText("jMenuItem3");
+        popupInicio.add(jMenuItem3);
 
-        itemUsuariosInicios.setText("Usuarios (Admin.)\n");
-        itemUsuariosInicios.addActionListener(this::itemUsuariosIniciosActionPerformed);
-        popupInicio.add(itemUsuariosInicios);
+        jMenuItem4.setText("jMenuItem4");
+        popupInicio.add(jMenuItem4);
 
-        itemCerrarSesionInicio.setText("Logout");
-        itemCerrarSesionInicio.addActionListener(this::itemCerrarSesionInicioActionPerformed);
-        popupInicio.add(itemCerrarSesionInicio);
+        jMenuItem5.setText("jMenuItem5");
+        popupInicio.add(jMenuItem5);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jpContenedor.setBackground(new java.awt.Color(153, 204, 255));
         jpContenedor.setPreferredSize(new java.awt.Dimension(1000, 650));
 
+        jpLogin.setBackground(new java.awt.Color(0, 0, 0));
         jpLogin.setPreferredSize(new java.awt.Dimension(1000, 650));
 
-        lblTitulo.setForeground(null);
+        lblTitulo.setFont(new java.awt.Font("Source Code Pro", 1, 18)); // NOI18N
+        lblTitulo.setForeground(new java.awt.Color(0, 255, 0));
         lblTitulo.setText("CACHOLA OS");
 
-        lblUsuario.setForeground(null);
+        lblUsuario.setForeground(new java.awt.Color(0, 255, 0));
         lblUsuario.setText("Usuario");
 
-        txtUsuario.setForeground(null);
+        txtUsuario.setBackground(new java.awt.Color(51, 51, 51));
+        txtUsuario.setForeground(new java.awt.Color(0, 255, 0));
+        txtUsuario.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
-        lblContrasena.setForeground(null);
+        lblContrasena.setForeground(new java.awt.Color(0, 255, 0));
         lblContrasena.setText("Contrasena");
 
-        txtContrasena.setForeground(null);
+        txtContrasena.setBackground(new java.awt.Color(51, 51, 51));
+        txtContrasena.setForeground(new java.awt.Color(0, 255, 0));
+        txtContrasena.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
-        btnIngresar.setForeground(null);
+        btnIngresar.setBackground(new java.awt.Color(0, 51, 0));
+        btnIngresar.setForeground(new java.awt.Color(0, 255, 0));
         btnIngresar.setText("Ingresar");
+        btnIngresar.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         btnIngresar.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 btnIngresarMouseClicked(evt);
             }
         });
 
-        pbLogin.setForeground(null);
+        pbLogin.setBackground(new java.awt.Color(0, 51, 0));
+        pbLogin.setForeground(new java.awt.Color(0, 255, 0));
 
-        lblEstado.setForeground(null);
+        lblEstado.setForeground(new java.awt.Color(0, 255, 0));
         lblEstado.setText("Ingrese sus credenciales");
+
+        lblImagen.setIcon(new javax.swing.ImageIcon(getClass().getResource("/proyectofinalp2_carlosochoa/sabrina.jpg"))); // NOI18N
+        lblImagen.setText("jLabel11");
+        lblImagen.setPreferredSize(new java.awt.Dimension(200, 200));
+
+        lblHomeLander.setIcon(new javax.swing.ImageIcon(getClass().getResource("/proyectofinalp2_carlosochoa/homelander.jpeg"))); // NOI18N
+        lblHomeLander.setText("jLabel11");
+        lblHomeLander.setPreferredSize(new java.awt.Dimension(200, 200));
 
         javax.swing.GroupLayout jpLoginLayout = new javax.swing.GroupLayout(jpLogin);
         jpLogin.setLayout(jpLoginLayout);
         jpLoginLayout.setHorizontalGroup(
             jpLoginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jpLoginLayout.createSequentialGroup()
-                .addGap(0, 340, Short.MAX_VALUE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(lblTitulo)
+                .addGap(433, 433, 433))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jpLoginLayout.createSequentialGroup()
                 .addGroup(jpLoginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jpLoginLayout.createSequentialGroup()
-                        .addComponent(lblTitulo)
-                        .addGap(457, 457, 457))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jpLoginLayout.createSequentialGroup()
-                        .addGroup(jpLoginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jpLoginLayout.createSequentialGroup()
-                                .addGap(135, 135, 135)
-                                .addComponent(btnIngresar)
-                                .addGap(133, 133, 133))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jpLoginLayout.createSequentialGroup()
+                    .addGroup(jpLoginLayout.createSequentialGroup()
+                        .addContainerGap(112, Short.MAX_VALUE)
+                        .addComponent(lblHomeLander, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(106, 106, 106)
+                        .addGroup(jpLoginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(txtContrasena, javax.swing.GroupLayout.PREFERRED_SIZE, 345, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(jpLoginLayout.createSequentialGroup()
                                 .addComponent(lblUsuario)
                                 .addGap(156, 156, 156))
-                            .addComponent(txtContrasena, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 345, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtUsuario, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 345, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(pbLogin, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 345, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jpLoginLayout.createSequentialGroup()
+                            .addComponent(txtUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 345, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(jpLoginLayout.createSequentialGroup()
                                 .addComponent(lblContrasena)
                                 .addGap(144, 144, 144))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jpLoginLayout.createSequentialGroup()
-                                .addComponent(lblEstado)
-                                .addGap(105, 105, 105)))
-                        .addGap(315, 315, 315))))
+                            .addGroup(jpLoginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(pbLogin, javax.swing.GroupLayout.PREFERRED_SIZE, 345, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGroup(jpLoginLayout.createSequentialGroup()
+                                    .addGap(112, 112, 112)
+                                    .addComponent(lblEstado)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 107, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addGap(93, 93, 93))
+                    .addGroup(jpLoginLayout.createSequentialGroup()
+                        .addGap(497, 497, 497)
+                        .addComponent(btnIngresar)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                .addComponent(lblImagen, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(80, 80, 80))
         );
         jpLoginLayout.setVerticalGroup(
             jpLoginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jpLoginLayout.createSequentialGroup()
-                .addGap(24, 24, 24)
-                .addComponent(lblTitulo)
-                .addGap(44, 44, 44)
-                .addComponent(lblUsuario)
-                .addGap(18, 18, 18)
-                .addComponent(txtUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(lblContrasena)
-                .addGap(18, 18, 18)
-                .addComponent(txtContrasena, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(btnIngresar)
-                .addGap(47, 47, 47)
-                .addComponent(pbLogin, javax.swing.GroupLayout.PREFERRED_SIZE, 15, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(lblEstado)
-                .addContainerGap(293, Short.MAX_VALUE))
+                .addGroup(jpLoginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jpLoginLayout.createSequentialGroup()
+                        .addGap(24, 24, 24)
+                        .addComponent(lblTitulo)
+                        .addGap(87, 87, 87)
+                        .addComponent(lblUsuario)
+                        .addGap(18, 18, 18)
+                        .addComponent(txtUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(lblContrasena)
+                        .addGap(8, 8, 8)
+                        .addComponent(lblImagen, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jpLoginLayout.createSequentialGroup()
+                        .addGap(246, 246, 246)
+                        .addComponent(txtContrasena, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(btnIngresar)
+                        .addGap(18, 18, 18)
+                        .addComponent(pbLogin, javax.swing.GroupLayout.PREFERRED_SIZE, 15, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(lblEstado))
+                    .addGroup(jpLoginLayout.createSequentialGroup()
+                        .addGap(115, 115, 115)
+                        .addComponent(lblHomeLander, javax.swing.GroupLayout.PREFERRED_SIZE, 328, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(586, Short.MAX_VALUE))
         );
 
         jpInicio.setPreferredSize(new java.awt.Dimension(1000, 650));
@@ -417,11 +471,6 @@ public class ProyectoPrincipal extends javax.swing.JFrame {
         lblNombreSistema.setText("CacholaOS");
 
         btnInicio.setText("Inicio");
-        btnInicio.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                btnInicioMouseClicked(evt);
-            }
-        });
 
         btnUsuarios.setText("Usuarios");
         btnUsuarios.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -455,17 +504,17 @@ public class ProyectoPrincipal extends javax.swing.JFrame {
             .addGroup(jpNavbarLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(lblNombreSistema)
-                .addGap(113, 113, 113)
+                .addGap(128, 128, 128)
                 .addComponent(btnInicio)
-                .addGap(80, 80, 80)
+                .addGap(18, 18, 18)
                 .addComponent(btnUsuarios)
-                .addGap(84, 84, 84)
+                .addGap(18, 18, 18)
                 .addComponent(btnPersonalizar)
-                .addGap(64, 64, 64)
+                .addGap(129, 129, 129)
                 .addComponent(lblUsuarioActual)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 156, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 134, Short.MAX_VALUE)
                 .addComponent(btnCerrarSesion)
-                .addGap(45, 45, 45))
+                .addGap(115, 115, 115))
         );
         jpNavbarLayout.setVerticalGroup(
             jpNavbarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -485,6 +534,7 @@ public class ProyectoPrincipal extends javax.swing.JFrame {
         jpEscritorio.setPreferredSize(new java.awt.Dimension(1000, 575));
 
         btnEditor.setText("Editor de texto");
+        btnEditor.setPreferredSize(new java.awt.Dimension(1016, 661));
         btnEditor.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 btnEditorMouseClicked(evt);
@@ -517,17 +567,17 @@ public class ProyectoPrincipal extends javax.swing.JFrame {
             jpEscritorioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jpEscritorioLayout.createSequentialGroup()
                 .addGap(54, 54, 54)
-                .addGroup(jpEscritorioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(btnExplorador, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btnEditor, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btnConfiguracion, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(789, Short.MAX_VALUE))
+                .addGroup(jpEscritorioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addComponent(btnExplorador, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                    .addComponent(btnEditor, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                    .addComponent(btnConfiguracion, javax.swing.GroupLayout.DEFAULT_SIZE, 146, Short.MAX_VALUE))
+                .addContainerGap(800, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jpEscritorioLayout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jpEscritorioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(lblFecha)
                     .addComponent(lblHora))
-                .addGap(96, 96, 96))
+                .addGap(102, 102, 102))
         );
         jpEscritorioLayout.setVerticalGroup(
             jpEscritorioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -538,11 +588,11 @@ public class ProyectoPrincipal extends javax.swing.JFrame {
                 .addComponent(btnExplorador, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(46, 46, 46)
                 .addComponent(btnConfiguracion, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 153, Short.MAX_VALUE)
+                .addGap(139, 139, 139)
                 .addComponent(lblHora)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(lblFecha)
-                .addGap(139, 139, 139))
+                .addContainerGap(153, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout jpInicioLayout = new javax.swing.GroupLayout(jpInicio);
@@ -972,6 +1022,13 @@ public class ProyectoPrincipal extends javax.swing.JFrame {
             }
         });
 
+        btnQuitarImagen.setText("Eliminar Imagen");
+        btnQuitarImagen.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnQuitarImagenMouseClicked(evt);
+            }
+        });
+
         javax.swing.GroupLayout jpConfiguracionLayout = new javax.swing.GroupLayout(jpConfiguracion);
         jpConfiguracion.setLayout(jpConfiguracionLayout);
         jpConfiguracionLayout.setHorizontalGroup(
@@ -1003,10 +1060,7 @@ public class ProyectoPrincipal extends javax.swing.JFrame {
                                         .addComponent(rbItalica))
                                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jpConfiguracionLayout.createSequentialGroup()
                                         .addComponent(jLabel10)
-                                        .addGap(56, 56, 56))))
-                            .addGroup(jpConfiguracionLayout.createSequentialGroup()
-                                .addGap(67, 67, 67)
-                                .addComponent(btnImagenFondo, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                        .addGap(56, 56, 56)))))
                         .addGap(349, 349, 349))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jpConfiguracionLayout.createSequentialGroup()
                         .addComponent(jcbFuenteConfiguracion, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -1015,17 +1069,16 @@ public class ProyectoPrincipal extends javax.swing.JFrame {
                         .addComponent(jcbTamanoConfiguracion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(433, 433, 433))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jpConfiguracionLayout.createSequentialGroup()
-                        .addComponent(btnGuardarConfiguracion, javax.swing.GroupLayout.PREFERRED_SIZE, 252, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(332, 332, 332))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jpConfiguracionLayout.createSequentialGroup()
                         .addGroup(jpConfiguracionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 205, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(jpConfiguracionLayout.createSequentialGroup()
                                 .addComponent(btnColorFondo)
                                 .addGap(18, 18, 18)
                                 .addComponent(btnColorNavBar)
                                 .addGap(18, 18, 18)
-                                .addComponent(btnColorTexto)))
+                                .addComponent(btnColorTexto))
+                            .addGroup(jpConfiguracionLayout.createSequentialGroup()
+                                .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 205, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(17, 17, 17)))
                         .addGap(18, 18, 18)
                         .addGroup(jpConfiguracionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jpConfiguracionLayout.createSequentialGroup()
@@ -1033,7 +1086,15 @@ public class ProyectoPrincipal extends javax.swing.JFrame {
                                 .addGap(207, 207, 207))
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jpConfiguracionLayout.createSequentialGroup()
                                 .addComponent(btnVolverConfiguracion)
-                                .addGap(60, 60, 60))))))
+                                .addGap(60, 60, 60))))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jpConfiguracionLayout.createSequentialGroup()
+                        .addComponent(btnGuardarConfiguracion, javax.swing.GroupLayout.PREFERRED_SIZE, 252, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(332, 332, 332))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jpConfiguracionLayout.createSequentialGroup()
+                        .addComponent(btnImagenFondo)
+                        .addGap(18, 18, 18)
+                        .addComponent(btnQuitarImagen, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(321, 321, 321))))
         );
         jpConfiguracionLayout.setVerticalGroup(
             jpConfiguracionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1067,11 +1128,13 @@ public class ProyectoPrincipal extends javax.swing.JFrame {
                     .addComponent(rbItalica))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jLabel10)
-                .addGap(12, 12, 12)
-                .addComponent(btnImagenFondo)
+                .addGap(18, 18, 18)
+                .addGroup(jpConfiguracionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnImagenFondo)
+                    .addComponent(btnQuitarImagen))
                 .addGap(18, 18, 18)
                 .addComponent(btnGuardarConfiguracion)
-                .addContainerGap(179, Short.MAX_VALUE))
+                .addContainerGap(173, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout jpContenedorLayout = new javax.swing.GroupLayout(jpContenedor);
@@ -2341,57 +2404,17 @@ public class ProyectoPrincipal extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_btnImagenFondoMouseClicked
 
-    private void itemEditorInicioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itemEditorInicioActionPerformed
+    private void btnQuitarImagenMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnQuitarImagenMouseClicked
         // TODO add your handling code here:
-        jpInicio.setVisible(false);
-        jpEditor.setVisible(true);
-    }//GEN-LAST:event_itemEditorInicioActionPerformed
+        configuracionActual.setImagenFondo("");
 
-    private void itemExploradorInicioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itemExploradorInicioActionPerformed
-        // TODO add your handling code here:
-        jpInicio.setVisible(false);
-        jpExplorador.setVisible(true);
-    }//GEN-LAST:event_itemExploradorInicioActionPerformed
+        ((PanelFondo) jpEscritorio).setRutaImagen("");
 
-    private void itemConfiguracionInicioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itemConfiguracionInicioActionPerformed
-        // TODO add your handling code here:
-        jpInicio.setVisible(false);
-        jpConfiguracion.setVisible(true);
-    }//GEN-LAST:event_itemConfiguracionInicioActionPerformed
-
-    private void itemUsuariosIniciosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itemUsuariosIniciosActionPerformed
-        // TODO add your handling code here:
-        if (usuarioActual == null) {
-            return;
-        }
-
-        if (!usuarioActual.getTipo().equals("Administrador")) {
-            JOptionPane.showMessageDialog(
-                    this,
-                    "Solo los administradores pueden administrar usuarios"
-            );
-            return;
-        }
-
-        actualizarTablaUsuarios();
-
-        jpInicio.setVisible(false);
-        jpUsuarios.setVisible(true);
-    }//GEN-LAST:event_itemUsuariosIniciosActionPerformed
-
-    private void btnInicioMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnInicioMouseClicked
-        // TODO add your handling code here:
-        popupInicio.show(
-                btnInicio,
-                0,
-                btnInicio.getHeight()
+        JOptionPane.showMessageDialog(
+                this,
+                "Imagen de fondo eliminada"
         );
-    }//GEN-LAST:event_btnInicioMouseClicked
-
-    private void itemCerrarSesionInicioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itemCerrarSesionInicioActionPerformed
-        // TODO add your handling code here:
-        cerrarSesion();
-    }//GEN-LAST:event_itemCerrarSesionInicioActionPerformed
+    }//GEN-LAST:event_btnQuitarImagenMouseClicked
 
     /**
      * @param args the command line arguments
@@ -2720,6 +2743,21 @@ public class ProyectoPrincipal extends javax.swing.JFrame {
         jpNavbar.setBackground(
                 configuracionActual.getColorNavbar()
         );
+        
+        jpEditor.setBackground(
+        configuracionActual.getColorFondo());
+
+        jpExplorador.setBackground(
+                configuracionActual.getColorFondo()
+        );
+
+        jpUsuarios.setBackground(
+                configuracionActual.getColorFondo()
+        );
+
+        jpConfiguracion.setBackground(
+                configuracionActual.getColorFondo()
+        );
 
         Color colorTexto
                 = configuracionActual.getColorTexto();
@@ -2741,6 +2779,55 @@ public class ProyectoPrincipal extends javax.swing.JFrame {
         btnEditor.setForeground(colorTexto);
         btnExplorador.setForeground(colorTexto);
         btnConfiguracion.setForeground(colorTexto);
+        btnQuitarImagen.setForeground(colorTexto);
+        
+        lblTituloEditor.setForeground(colorTexto);
+        lblFuenteEditor.setForeground(colorTexto);
+        lblTamanoEditor.setForeground(colorTexto);
+
+        btnNuevo.setForeground(colorTexto);
+        btnAbrir.setForeground(colorTexto);
+        btnGuardar.setForeground(colorTexto);
+        btnColorEditor.setForeground(colorTexto);
+        btnColorFuente.setForeground(colorTexto);
+        btnBold.setForeground(colorTexto);
+        btnItalics.setForeground(colorTexto);
+        btnVolver.setForeground(colorTexto);
+
+
+        lblExploradorTitulo.setForeground(colorTexto);
+
+        btnCrearArchivo.setForeground(colorTexto);
+        btnCrearCarpeta.setForeground(colorTexto);
+        btnEliminarArchivo.setForeground(colorTexto);
+        btnVolverExplorador.setForeground(colorTexto);
+        
+        jLabel1.setForeground(colorTexto);
+
+        btnAgregarUsuario.setForeground(colorTexto);
+        btnEditarUsuario.setForeground(colorTexto);
+        btnEliminarUsuario.setForeground(colorTexto);
+        btnVolverUsuarios.setForeground(colorTexto);
+
+
+        jLabel5.setForeground(colorTexto);
+        jLabel6.setForeground(colorTexto);
+        jLabel7.setForeground(colorTexto);
+        jLabel8.setForeground(colorTexto);
+        jLabel9.setForeground(colorTexto);
+        jLabel10.setForeground(colorTexto);
+
+        btnColorFondo.setForeground(colorTexto);
+        btnColorNavBar.setForeground(colorTexto);
+        btnColorTexto.setForeground(colorTexto);
+        btnColorBotones.setForeground(colorTexto);
+        btnImagenFondo.setForeground(colorTexto);
+        btnGuardarConfiguracion.setForeground(colorTexto);
+        btnVolverConfiguracion.setForeground(colorTexto);
+
+        rbNormal.setForeground(colorTexto);
+        rbNegrita.setForeground(colorTexto);
+        rbItalica.setForeground(colorTexto);
 
         
         btnInicio.setBackground(colorBotones);
@@ -2751,6 +2838,36 @@ public class ProyectoPrincipal extends javax.swing.JFrame {
         btnEditor.setBackground(colorBotones);
         btnExplorador.setBackground(colorBotones);
         btnConfiguracion.setBackground(colorBotones);
+        
+        btnNuevo.setBackground(colorBotones);
+        btnAbrir.setBackground(colorBotones);
+        btnGuardar.setBackground(colorBotones);
+        btnColorEditor.setBackground(colorBotones);
+        btnColorFuente.setBackground(colorBotones);
+        btnBold.setBackground(colorBotones);
+        btnItalics.setBackground(colorBotones);
+        btnVolver.setBackground(colorBotones);
+
+
+        btnCrearArchivo.setBackground(colorBotones);
+        btnCrearCarpeta.setBackground(colorBotones);
+        btnEliminarArchivo.setBackground(colorBotones);
+        btnVolverExplorador.setBackground(colorBotones);
+        
+        btnAgregarUsuario.setBackground(colorBotones);
+        btnEditarUsuario.setBackground(colorBotones);
+        btnEliminarUsuario.setBackground(colorBotones);
+        btnVolverUsuarios.setBackground(colorBotones);
+        btnQuitarImagen.setBackground(colorBotones);
+
+
+        btnColorFondo.setBackground(colorBotones);
+        btnColorNavBar.setBackground(colorBotones);
+        btnColorTexto.setBackground(colorBotones);
+        btnColorBotones.setBackground(colorBotones);
+        btnImagenFondo.setBackground(colorBotones);
+        btnGuardarConfiguracion.setBackground(colorBotones);
+        btnVolverConfiguracion.setBackground(colorBotones);
 
        
         Font nuevaFuente = new Font(
@@ -2772,6 +2889,66 @@ public class ProyectoPrincipal extends javax.swing.JFrame {
         btnEditor.setFont(nuevaFuente);
         btnExplorador.setFont(nuevaFuente);
         btnConfiguracion.setFont(nuevaFuente);
+        btnQuitarImagen.setFont(nuevaFuente);
+        
+        lblTituloEditor.setFont(nuevaFuente);
+        lblFuenteEditor.setFont(nuevaFuente);
+        lblTamanoEditor.setFont(nuevaFuente);
+
+        btnNuevo.setFont(nuevaFuente);
+        btnAbrir.setFont(nuevaFuente);
+        btnGuardar.setFont(nuevaFuente);
+        btnColorEditor.setFont(nuevaFuente);
+        btnColorFuente.setFont(nuevaFuente);
+        btnBold.setFont(nuevaFuente);
+        btnItalics.setFont(nuevaFuente);
+        btnVolver.setFont(nuevaFuente);
+
+        jcbFuenteEditor.setFont(nuevaFuente);
+        jcbTamanoEditor.setFont(nuevaFuente);
+
+
+        lblExploradorTitulo.setFont(nuevaFuente);
+
+        btnCrearArchivo.setFont(nuevaFuente);
+        btnCrearCarpeta.setFont(nuevaFuente);
+        btnEliminarArchivo.setFont(nuevaFuente);
+        btnVolverExplorador.setFont(nuevaFuente);
+
+        treeArchivos.setFont(nuevaFuente);
+        tblArchivos.setFont(nuevaFuente);
+        
+        jLabel1.setFont(nuevaFuente);
+
+        btnAgregarUsuario.setFont(nuevaFuente);
+        btnEditarUsuario.setFont(nuevaFuente);
+        btnEliminarUsuario.setFont(nuevaFuente);
+        btnVolverUsuarios.setFont(nuevaFuente);
+
+        tblUsuarios.setFont(nuevaFuente);
+
+
+        jLabel5.setFont(nuevaFuente);
+        jLabel6.setFont(nuevaFuente);
+        jLabel7.setFont(nuevaFuente);
+        jLabel8.setFont(nuevaFuente);
+        jLabel9.setFont(nuevaFuente);
+        jLabel10.setFont(nuevaFuente);
+
+        btnColorFondo.setFont(nuevaFuente);
+        btnColorNavBar.setFont(nuevaFuente);
+        btnColorTexto.setFont(nuevaFuente);
+        btnColorBotones.setFont(nuevaFuente);
+        btnImagenFondo.setFont(nuevaFuente);
+        btnGuardarConfiguracion.setFont(nuevaFuente);
+        btnVolverConfiguracion.setFont(nuevaFuente);
+
+        jcbFuenteConfiguracion.setFont(nuevaFuente);
+        jcbTamanoConfiguracion.setFont(nuevaFuente);
+
+        rbNormal.setFont(nuevaFuente);
+        rbNegrita.setFont(nuevaFuente);
+        rbItalica.setFont(nuevaFuente);
         
         if (configuracionActual.getImagenFondo() != null
                 && !configuracionActual.getImagenFondo().isEmpty()) {
@@ -2850,6 +3027,7 @@ public class ProyectoPrincipal extends javax.swing.JFrame {
     private javax.swing.JButton btnItalics;
     private javax.swing.JButton btnNuevo;
     private javax.swing.JButton btnPersonalizar;
+    private javax.swing.JButton btnQuitarImagen;
     private javax.swing.JButton btnUsuarios;
     private javax.swing.JButton btnVolver;
     private javax.swing.JButton btnVolverConfiguracion;
@@ -2859,13 +3037,8 @@ public class ProyectoPrincipal extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> cbTipoUsuario;
     private javax.swing.JDialog dialogUsuario;
     private javax.swing.JMenuItem itemAbrir;
-    private javax.swing.JMenuItem itemCerrarSesionInicio;
-    private javax.swing.JMenuItem itemConfiguracionInicio;
-    private javax.swing.JMenuItem itemEditorInicio;
     private javax.swing.JMenuItem itemEliminar;
-    private javax.swing.JMenuItem itemExploradorInicio;
     private javax.swing.JMenuItem itemRenombrar;
-    private javax.swing.JMenuItem itemUsuariosInicios;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel2;
@@ -2876,6 +3049,11 @@ public class ProyectoPrincipal extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
+    private javax.swing.JMenuItem jMenuItem1;
+    private javax.swing.JMenuItem jMenuItem2;
+    private javax.swing.JMenuItem jMenuItem3;
+    private javax.swing.JMenuItem jMenuItem4;
+    private javax.swing.JMenuItem jMenuItem5;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
@@ -2898,7 +3076,9 @@ public class ProyectoPrincipal extends javax.swing.JFrame {
     private javax.swing.JLabel lblExploradorTitulo;
     private javax.swing.JLabel lblFecha;
     private javax.swing.JLabel lblFuenteEditor;
+    private javax.swing.JLabel lblHomeLander;
     private javax.swing.JLabel lblHora;
+    private javax.swing.JLabel lblImagen;
     private javax.swing.JLabel lblNombreSistema;
     private javax.swing.JLabel lblTamanoEditor;
     private javax.swing.JLabel lblTitulo;
