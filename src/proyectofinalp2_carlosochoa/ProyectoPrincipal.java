@@ -5,31 +5,26 @@
 package proyectofinalp2_carlosochoa;
 
 import javax.swing.JOptionPane;
-//hora y fecha
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import javax.swing.Timer;
-//archivo.txt
 import javax.swing.JFileChooser;
 import javax.swing.filechooser.FileNameExtensionFilter;
 import java.io.File;
 import java.io.FileReader;
 import java.io.BufferedReader;
 import java.io.FileWriter;
-//colorsito
 import javax.swing.JColorChooser;
 import java.awt.Color;
-//fuente
 import java.awt.Font;
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
-//modelos
+import java.io.ObjectOutputStream;
 import javax.swing.tree.DefaultMutableTreeNode;
 import javax.swing.tree.DefaultTreeModel;
 import javax.swing.table.DefaultTableModel;
-//arbol
 import javax.swing.tree.TreePath;
 
 /**
@@ -2113,6 +2108,29 @@ public class ProyectoPrincipal extends javax.swing.JFrame {
             };
 
             modelo.addRow(fila);
+        }
+    }
+    
+    private void guardarUsuarios() {
+
+        try {
+
+            ObjectOutputStream salida
+                    = new ObjectOutputStream(
+                            new FileOutputStream("usuarios.dat")
+                    );
+
+            salida.writeInt(cantidadUsuarios);
+
+            for (int i = 0; i < cantidadUsuarios; i++) {
+                salida.writeObject(usuarios[i]);
+            }
+
+            salida.close();
+
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this,
+                    "No se pudieron guardar los usuarios");
         }
     }
 
