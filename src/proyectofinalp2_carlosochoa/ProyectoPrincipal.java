@@ -199,6 +199,8 @@ public class ProyectoPrincipal extends javax.swing.JFrame {
         btnImagenFondo = new javax.swing.JButton();
         btnGuardarConfiguracion = new javax.swing.JButton();
         btnVolverConfiguracion = new javax.swing.JButton();
+        btnColorTexto = new javax.swing.JButton();
+        btnColorBotones = new javax.swing.JButton();
 
         itemAbrir.setText("Abrir");
         itemAbrir.addActionListener(this::itemAbrirActionPerformed);
@@ -862,6 +864,7 @@ public class ProyectoPrincipal extends javax.swing.JFrame {
 
         jpConfiguracion.setPreferredSize(new java.awt.Dimension(1000, 650));
 
+        jLabel5.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         jLabel5.setText("Personalización");
 
         jLabel6.setText("Apariencia");
@@ -882,11 +885,11 @@ public class ProyectoPrincipal extends javax.swing.JFrame {
 
         jLabel7.setText("Fuente");
 
-        jcbFuenteConfiguracion.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jcbFuenteConfiguracion.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Arial", "Times New Roman", "Courier New" }));
 
         jLabel8.setText("Tamano");
 
-        jcbTamanoConfiguracion.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jcbTamanoConfiguracion.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "12", "14", "16", "18", "20", "24" }));
 
         jLabel9.setText("Estilo :");
 
@@ -904,6 +907,11 @@ public class ProyectoPrincipal extends javax.swing.JFrame {
         btnImagenFondo.setText("Seleccionar Imagen");
 
         btnGuardarConfiguracion.setText("Guardar Cambios");
+        btnGuardarConfiguracion.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnGuardarConfiguracionMouseClicked(evt);
+            }
+        });
 
         btnVolverConfiguracion.setBackground(new java.awt.Color(255, 0, 0));
         btnVolverConfiguracion.setText("Volver");
@@ -913,12 +921,26 @@ public class ProyectoPrincipal extends javax.swing.JFrame {
             }
         });
 
+        btnColorTexto.setText("Color de Texto");
+        btnColorTexto.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnColorTextoMouseClicked(evt);
+            }
+        });
+
+        btnColorBotones.setText("Color de Botones");
+        btnColorBotones.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnColorBotonesMouseClicked(evt);
+            }
+        });
+
         javax.swing.GroupLayout jpConfiguracionLayout = new javax.swing.GroupLayout(jpConfiguracion);
         jpConfiguracion.setLayout(jpConfiguracionLayout);
         jpConfiguracionLayout.setHorizontalGroup(
             jpConfiguracionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jpConfiguracionLayout.createSequentialGroup()
-                .addContainerGap(386, Short.MAX_VALUE)
+            .addGroup(jpConfiguracionLayout.createSequentialGroup()
+                .addContainerGap(265, Short.MAX_VALUE)
                 .addGroup(jpConfiguracionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jpConfiguracionLayout.createSequentialGroup()
                         .addGroup(jpConfiguracionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -932,56 +954,70 @@ public class ProyectoPrincipal extends javax.swing.JFrame {
                                 .addGap(109, 109, 109)
                                 .addComponent(jLabel8))
                             .addGroup(jpConfiguracionLayout.createSequentialGroup()
-                                .addGap(91, 91, 91)
-                                .addGroup(jpConfiguracionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(jcbTamanoConfiguracion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jcbFuenteConfiguracion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                            .addGroup(jpConfiguracionLayout.createSequentialGroup()
                                 .addGap(110, 110, 110)
                                 .addComponent(jLabel9))
                             .addGroup(jpConfiguracionLayout.createSequentialGroup()
-                                .addComponent(btnColorFondo)
-                                .addGap(28, 28, 28)
-                                .addComponent(btnColorNavBar))
+                                .addComponent(rbNormal)
+                                .addGap(18, 18, 18)
+                                .addGroup(jpConfiguracionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(jpConfiguracionLayout.createSequentialGroup()
+                                        .addComponent(rbNegrita)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(rbItalica))
+                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jpConfiguracionLayout.createSequentialGroup()
+                                        .addComponent(jLabel10)
+                                        .addGap(56, 56, 56))))
                             .addGroup(jpConfiguracionLayout.createSequentialGroup()
                                 .addGap(67, 67, 67)
-                                .addComponent(btnImagenFondo))
-                            .addGroup(jpConfiguracionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                .addComponent(btnGuardarConfiguracion, javax.swing.GroupLayout.PREFERRED_SIZE, 252, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jpConfiguracionLayout.createSequentialGroup()
-                                    .addComponent(rbNormal)
-                                    .addGap(18, 18, 18)
-                                    .addGroup(jpConfiguracionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(jLabel10)
-                                        .addGroup(jpConfiguracionLayout.createSequentialGroup()
-                                            .addComponent(rbNegrita)
-                                            .addGap(18, 18, 18)
-                                            .addComponent(rbItalica))))))
+                                .addComponent(btnImagenFondo, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addGap(349, 349, 349))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jpConfiguracionLayout.createSequentialGroup()
-                        .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(297, 297, 297)
-                        .addComponent(btnVolverConfiguracion)
-                        .addGap(60, 60, 60))))
+                        .addComponent(jcbFuenteConfiguracion, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(399, 399, 399))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jpConfiguracionLayout.createSequentialGroup()
+                        .addComponent(jcbTamanoConfiguracion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(433, 433, 433))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jpConfiguracionLayout.createSequentialGroup()
+                        .addComponent(btnGuardarConfiguracion, javax.swing.GroupLayout.PREFERRED_SIZE, 252, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(332, 332, 332))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jpConfiguracionLayout.createSequentialGroup()
+                        .addGroup(jpConfiguracionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 205, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(jpConfiguracionLayout.createSequentialGroup()
+                                .addComponent(btnColorFondo)
+                                .addGap(18, 18, 18)
+                                .addComponent(btnColorNavBar)
+                                .addGap(18, 18, 18)
+                                .addComponent(btnColorTexto)))
+                        .addGap(18, 18, 18)
+                        .addGroup(jpConfiguracionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jpConfiguracionLayout.createSequentialGroup()
+                                .addComponent(btnColorBotones)
+                                .addGap(207, 207, 207))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jpConfiguracionLayout.createSequentialGroup()
+                                .addComponent(btnVolverConfiguracion)
+                                .addGap(60, 60, 60))))))
         );
         jpConfiguracionLayout.setVerticalGroup(
             jpConfiguracionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jpConfiguracionLayout.createSequentialGroup()
-                .addGap(9, 9, 9)
+                .addGap(3, 3, 3)
                 .addGroup(jpConfiguracionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel5)
-                    .addComponent(btnVolverConfiguracion))
-                .addGap(22, 22, 22)
+                    .addComponent(btnVolverConfiguracion)
+                    .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(17, 17, 17)
                 .addComponent(jLabel6)
-                .addGap(29, 29, 29)
+                .addGap(18, 18, 18)
                 .addGroup(jpConfiguracionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnColorFondo)
-                    .addComponent(btnColorNavBar))
-                .addGap(18, 18, 18)
+                    .addComponent(btnColorNavBar)
+                    .addComponent(btnColorTexto)
+                    .addComponent(btnColorBotones))
+                .addGap(29, 29, 29)
                 .addComponent(jLabel7)
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jcbFuenteConfiguracion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addGap(24, 24, 24)
                 .addComponent(jLabel8)
                 .addGap(18, 18, 18)
                 .addComponent(jcbTamanoConfiguracion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -992,9 +1028,9 @@ public class ProyectoPrincipal extends javax.swing.JFrame {
                     .addComponent(rbNormal)
                     .addComponent(rbNegrita)
                     .addComponent(rbItalica))
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jLabel10)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(12, 12, 12)
                 .addComponent(btnImagenFondo)
                 .addGap(18, 18, 18)
                 .addComponent(btnGuardarConfiguracion)
@@ -2148,6 +2184,86 @@ public class ProyectoPrincipal extends javax.swing.JFrame {
         jpInicio.setVisible(true);
     }//GEN-LAST:event_btnVolverConfiguracionMouseClicked
 
+    private void btnGuardarConfiguracionMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnGuardarConfiguracionMouseClicked
+        // TODO add your handling code here:
+        String fuente = jcbFuenteConfiguracion.getSelectedItem().toString();
+
+        int tamano = Integer.parseInt(
+                jcbTamanoConfiguracion.getSelectedItem().toString()
+        );
+
+        Font nuevaFuente = new Font(fuente, Font.PLAIN, tamano);
+
+
+        lblNombreSistema.setFont(nuevaFuente);
+        lblUsuarioActual.setFont(nuevaFuente);
+        lblHora.setFont(nuevaFuente);
+        lblFecha.setFont(nuevaFuente);
+
+
+        btnInicio.setFont(nuevaFuente);
+        btnUsuarios.setFont(nuevaFuente);
+        btnPersonalizar.setFont(nuevaFuente);
+        btnCerrarSesion.setFont(nuevaFuente);
+
+
+        btnEditor.setFont(nuevaFuente);
+        btnExplorador.setFont(nuevaFuente);
+        btnConfiguracion.setFont(nuevaFuente);
+    }//GEN-LAST:event_btnGuardarConfiguracionMouseClicked
+
+    private void btnColorTextoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnColorTextoMouseClicked
+        // TODO add your handling code here:
+        Color color = JColorChooser.showDialog(
+                this,
+                "Seleccione el color del texto",
+                lblNombreSistema.getForeground()
+        );
+
+        if (color != null) {
+
+            
+            lblNombreSistema.setForeground(color);
+            lblUsuarioActual.setForeground(color);
+            lblHora.setForeground(color);
+            lblFecha.setForeground(color);
+
+            
+            btnInicio.setForeground(color);
+            btnUsuarios.setForeground(color);
+            btnPersonalizar.setForeground(color);
+            btnCerrarSesion.setForeground(color);
+
+            
+            btnEditor.setForeground(color);
+            btnExplorador.setForeground(color);
+            btnConfiguracion.setForeground(color);
+        }
+    }//GEN-LAST:event_btnColorTextoMouseClicked
+
+    private void btnColorBotonesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnColorBotonesMouseClicked
+        // TODO add your handling code here:
+        Color color = JColorChooser.showDialog(
+                this,
+                "Seleccione el color de los botones",
+                btnInicio.getBackground()
+        );
+
+        if (color != null) {
+
+            
+            btnInicio.setBackground(color);
+            btnUsuarios.setBackground(color);
+            btnPersonalizar.setBackground(color);
+            btnCerrarSesion.setBackground(color);
+
+            
+            btnEditor.setBackground(color);
+            btnExplorador.setBackground(color);
+            btnConfiguracion.setBackground(color);
+        }
+    }//GEN-LAST:event_btnColorBotonesMouseClicked
+
     /**
      * @param args the command line arguments
      */
@@ -2405,10 +2521,12 @@ public class ProyectoPrincipal extends javax.swing.JFrame {
     private javax.swing.JButton btnBold;
     private javax.swing.JButton btnCancelarUsuario;
     private javax.swing.JButton btnCerrarSesion;
+    private javax.swing.JButton btnColorBotones;
     private javax.swing.JButton btnColorEditor;
     private javax.swing.JButton btnColorFondo;
     private javax.swing.JButton btnColorFuente;
     private javax.swing.JButton btnColorNavBar;
+    private javax.swing.JButton btnColorTexto;
     private javax.swing.JButton btnConfiguracion;
     private javax.swing.JButton btnCrearArchivo;
     private javax.swing.JButton btnCrearCarpeta;
